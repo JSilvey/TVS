@@ -10,21 +10,15 @@ using System.Windows.Forms;
 
 namespace TVSHomePage
 {
-    public partial class Form1 : Form
+    public partial class HomePage : Form
     {
-        public Form1()
+        public HomePage()
         {
             InitializeComponent();
             //Start Timer When Form Loads
             timer1.Start();
             
         }
-
-        private void button1_Click(object sender, EventArgs e)
-        {
-
-        }
-
         //Create a timer to display current time on main page
         private void timer1_Tick(object sender, EventArgs e)
         {
@@ -35,5 +29,21 @@ namespace TVSHomePage
             lblDateTime.Visible = true;
 
         }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            //Create EmployeeForm Object And Show EmployeeForm When Clicked
+            EmployeeForm empForm = new EmployeeForm();
+            empForm.Show();
+        }
+
+        private void btnAdministrator_Click(object sender, EventArgs e)
+        {
+            //Create AdminForm Object and Show AdminForm when Clicked
+            AdministratorForm AdminForm = new AdministratorForm();
+            AdminForm.Show();
+        }
+
+        
     }
 }
