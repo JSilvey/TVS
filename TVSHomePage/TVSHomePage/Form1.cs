@@ -15,33 +15,33 @@ namespace TVSHomePage
         public HomePage()
         {
             InitializeComponent();
-            //Start Timer When Form Loads
-            timer1.Start();
-            
-        }
-        //Create a timer to display current time on main page
-        private void timer1_Tick(object sender, EventArgs e)
-        {
-            //Get current Time
-            DateTime dateTime = DateTime.Now;
-            //Set Time Label To Show Current Time
-            this.lblDateTime.Text = dateTime.ToString();
-            lblDateTime.Visible = true;
-
         }
 
         private void button1_Click(object sender, EventArgs e)
         {
-            //Create EmployeeForm Object And Show EmployeeForm When Clicked
+            //Create And Show EmployeeForm When Clicked
             EmployeeForm empForm = new EmployeeForm();
             empForm.Show();
         }
 
         private void btnAdministrator_Click(object sender, EventArgs e)
         {
-            //Create AdminForm Object and Show AdminForm when Clicked
-            AdministratorForm AdminForm = new AdministratorForm();
-            AdminForm.Show();
+            //Create and Show AdminForm when Clicked
+            AdministratorForm adminForm = new AdministratorForm();
+            adminForm.Show();
+        }
+
+        private void btnTimeClock_Click(object sender, EventArgs e)
+        {
+            //Create and show time clock form when clicked
+            TimeClockForm timeClockForm = new TimeClockForm();
+            timeClockForm.Show();
+        }
+
+        private void btnExit_Click(object sender, EventArgs e)
+        {
+            //Close the form
+            this.Close();
         }
 
         
