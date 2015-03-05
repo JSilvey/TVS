@@ -103,6 +103,7 @@
             this.Controls.Add(this.btnAdministrator);
             this.Controls.Add(this.btnEmployee);
             this.ForeColor = System.Drawing.SystemColors.ControlText;
+            this.MaximizeBox = false;
             this.Name = "HomePage";
             this.Text = "Time Verification System";
             this.ResumeLayout(false);
