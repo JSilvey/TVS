@@ -16,5 +16,21 @@ namespace TVSHomePage
         {
             InitializeComponent();
         }
+
+        private void btnClose_Click(object sender, EventArgs e)
+        {
+            //Close This window
+            this.Close();
+        }
+
+        private void btnClockedIn_Click(object sender, EventArgs e)
+        {
+            //View who is clocked in
+        }
+
+        private void btnPayRoll_Click(object sender, EventArgs e)
+        {
+            //Create Payroll report for current week
+        }
     }
 }

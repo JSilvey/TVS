@@ -26,6 +26,8 @@ namespace TVSHomePage
 
         private void btnAdministrator_Click(object sender, EventArgs e)
         {
+            //Prompt Admin Log in messagebox
+            
             //Create and Show AdminForm when Clicked
             AdministratorForm adminForm = new AdministratorForm();
             adminForm.Show();

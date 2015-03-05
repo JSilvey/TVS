@@ -10,17 +10,11 @@ using System.Windows.Forms;
 
 namespace TVSHomePage
 {
-    public partial class EmployeeForm : Form
+    public partial class LogIn : Form
     {
-        public EmployeeForm()
+        public LogIn()
         {
             InitializeComponent();
-        }
-
-        private void btnClose_Click(object sender, EventArgs e)
-        {
-            //Close this window
-            this.Close();
         }
     }
 }

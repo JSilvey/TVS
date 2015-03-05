@@ -1,6 +1,6 @@
 ﻿namespace TVSHomePage
 {
-    partial class EmployeeForm
+    partial class LogIn
     {
         /// <summary>
         /// Required designer variable.
@@ -28,38 +28,36 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.btnClose = new System.Windows.Forms.Button();
+            this.label1 = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
-            // btnClose
+            // label1
             // 
-            this.btnClose.Font = new System.Drawing.Font("Rockwell", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnClose.Location = new System.Drawing.Point(211, 354);
-            this.btnClose.Name = "btnClose";
-            this.btnClose.Size = new System.Drawing.Size(119, 29);
-            this.btnClose.TabIndex = 11;
-            this.btnClose.Text = "Exit";
-            this.btnClose.UseVisualStyleBackColor = true;
-            this.btnClose.Click += new System.EventHandler(this.btnClose_Click);
+            this.label1.AutoSize = true;
+            this.label1.Font = new System.Drawing.Font("Consolas", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label1.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
+            this.label1.Location = new System.Drawing.Point(67, 9);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(150, 44);
+            this.label1.TabIndex = 3;
+            this.label1.Text = "Please log in \r\nto contine...";
+            this.label1.TextAlign = System.Drawing.ContentAlignment.TopCenter;
             // 
-            // EmployeeForm
+            // LogIn
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.BackColor = System.Drawing.SystemColors.Window;
-            this.ClientSize = new System.Drawing.Size(541, 395);
-            this.Controls.Add(this.btnClose);
-            this.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
-            this.Name = "EmployeeForm";
-            this.Text = "EmployeeForm";
+            this.ClientSize = new System.Drawing.Size(284, 262);
+            this.Controls.Add(this.label1);
+            this.Name = "LogIn";
+            this.Text = "Log In";
             this.ResumeLayout(false);
+            this.PerformLayout();
 
         }
 
         #endregion
 
-        private System.Windows.Forms.Button btnClose;
-
-
+        private System.Windows.Forms.Label label1;
     }
 }
