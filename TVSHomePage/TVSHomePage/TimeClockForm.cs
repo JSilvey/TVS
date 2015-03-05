@@ -24,8 +24,12 @@ namespace TVSHomePage
             //Get current Time
             DateTime dateTime = DateTime.Now;
             //Set Time Label To Show Current Time
-            this.lblDateTime.Text = dateTime.ToString("dddd   MMM dd, yyyy" + "\n\nh:mm:ss tt");
-            lblDateTime.Visible = true;
+            this.lblDay.Text = dateTime.ToString("dddd");
+            this.lblDate.Text = dateTime.ToString("MMM dd, yyyy");
+            this.lblTime.Text = dateTime.ToString("hh:mm:ss tt");
+            lblDay.Visible = true;
+            lblDate.Visible = true;
+            lblTime.Visible = true;
         }
 
         private void btnClose_Click(object sender, EventArgs e)

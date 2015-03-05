@@ -35,8 +35,10 @@
             this.btnClockOut = new System.Windows.Forms.Button();
             this.tmrTimeClock = new System.Windows.Forms.Timer(this.components);
             this.label2 = new System.Windows.Forms.Label();
-            this.lblDateTime = new System.Windows.Forms.Label();
+            this.lblDate = new System.Windows.Forms.Label();
             this.btnClose = new System.Windows.Forms.Button();
+            this.lblTime = new System.Windows.Forms.Label();
+            this.lblDay = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
             // mtbEmployeeID
@@ -84,13 +86,13 @@
             // 
             // tmrTimeClock
             // 
-            this.tmrTimeClock.Interval = 1000;
+            this.tmrTimeClock.Interval = 10;
             this.tmrTimeClock.Tick += new System.EventHandler(this.tmrTimeClock_Tick);
             // 
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Font = new System.Drawing.Font("Consolas", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label2.Font = new System.Drawing.Font("Consolas", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label2.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
             this.label2.Location = new System.Drawing.Point(44, 119);
             this.label2.Name = "label2";
@@ -99,18 +101,18 @@
             this.label2.Text = "Current Date and Time:";
             this.label2.TextAlign = System.Drawing.ContentAlignment.TopCenter;
             // 
-            // lblDateTime
+            // lblDate
             // 
-            this.lblDateTime.AutoSize = true;
-            this.lblDateTime.Font = new System.Drawing.Font("NI7SEG", 9.749999F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblDateTime.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
-            this.lblDateTime.Location = new System.Drawing.Point(45, 143);
-            this.lblDateTime.Name = "lblDateTime";
-            this.lblDateTime.Size = new System.Drawing.Size(204, 36);
-            this.lblDateTime.TabIndex = 9;
-            this.lblDateTime.Text = "DDDDDDDD   mmm/dd/yyyy\r\n\r\nh:mm:ss tt";
-            this.lblDateTime.TextAlign = System.Drawing.ContentAlignment.TopCenter;
-            this.lblDateTime.Visible = false;
+            this.lblDate.AutoSize = true;
+            this.lblDate.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblDate.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
+            this.lblDate.Location = new System.Drawing.Point(146, 147);
+            this.lblDate.Name = "lblDate";
+            this.lblDate.Size = new System.Drawing.Size(104, 16);
+            this.lblDate.TabIndex = 9;
+            this.lblDate.Text = "mmm/dd/yyyy";
+            this.lblDate.TextAlign = System.Drawing.ContentAlignment.TopCenter;
+            this.lblDate.Visible = false;
             // 
             // btnClose
             // 
@@ -123,19 +125,47 @@
             this.btnClose.UseVisualStyleBackColor = true;
             this.btnClose.Click += new System.EventHandler(this.btnClose_Click);
             // 
+            // lblTime
+            // 
+            this.lblTime.AutoSize = true;
+            this.lblTime.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblTime.Location = new System.Drawing.Point(96, 173);
+            this.lblTime.Name = "lblTime";
+            this.lblTime.Size = new System.Drawing.Size(102, 20);
+            this.lblTime.TabIndex = 11;
+            this.lblTime.Text = "hh:mm:ss tt";
+            this.lblTime.Visible = false;
+            // 
+            // lblDay
+            // 
+            this.lblDay.AutoSize = true;
+            this.lblDay.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblDay.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
+            this.lblDay.Location = new System.Drawing.Point(44, 147);
+            this.lblDay.Name = "lblDay";
+            this.lblDay.Size = new System.Drawing.Size(89, 16);
+            this.lblDay.TabIndex = 12;
+            this.lblDay.Text = "ddddddddd";
+            this.lblDay.TextAlign = System.Drawing.ContentAlignment.TopCenter;
+            this.lblDay.Visible = false;
+            // 
             // TimeClockForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
             this.BackColor = System.Drawing.SystemColors.Window;
             this.ClientSize = new System.Drawing.Size(295, 264);
+            this.Controls.Add(this.lblDay);
+            this.Controls.Add(this.lblTime);
             this.Controls.Add(this.btnClose);
-            this.Controls.Add(this.lblDateTime);
+            this.Controls.Add(this.lblDate);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.mtbEmployeeID);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.btnClockIn);
             this.Controls.Add(this.btnClockOut);
+            this.MaximizeBox = false;
             this.Name = "TimeClockForm";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Time Clock";
@@ -152,7 +182,9 @@
         private System.Windows.Forms.Button btnClockOut;
         private System.Windows.Forms.Timer tmrTimeClock;
         private System.Windows.Forms.Label label2;
-        private System.Windows.Forms.Label lblDateTime;
+        private System.Windows.Forms.Label lblDate;
         private System.Windows.Forms.Button btnClose;
+        private System.Windows.Forms.Label lblTime;
+        private System.Windows.Forms.Label lblDay;
     }
 }
