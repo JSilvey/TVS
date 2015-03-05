@@ -95,6 +95,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
             this.BackColor = System.Drawing.SystemColors.Window;
             this.ClientSize = new System.Drawing.Size(284, 319);
             this.Controls.Add(this.btnExit);
@@ -105,6 +106,7 @@
             this.ForeColor = System.Drawing.SystemColors.ControlText;
             this.MaximizeBox = false;
             this.Name = "HomePage";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.Manual;
             this.Text = "Time Verification System";
             this.ResumeLayout(false);
             this.PerformLayout();
