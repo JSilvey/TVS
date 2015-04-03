@@ -32,13 +32,12 @@
             this.btnClockedIn = new System.Windows.Forms.Button();
             this.btnPayRoll = new System.Windows.Forms.Button();
             this.btnEditTimeCards = new System.Windows.Forms.Button();
-            this.lstDataBaseResults = new System.Windows.Forms.ListBox();
             this.SuspendLayout();
             // 
             // btnClose
             // 
             this.btnClose.Font = new System.Drawing.Font("Rockwell", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnClose.Location = new System.Drawing.Point(297, 327);
+            this.btnClose.Location = new System.Drawing.Point(562, 575);
             this.btnClose.Name = "btnClose";
             this.btnClose.Size = new System.Drawing.Size(119, 29);
             this.btnClose.TabIndex = 11;
@@ -49,7 +48,7 @@
             // btnClockedIn
             // 
             this.btnClockedIn.Font = new System.Drawing.Font("Rockwell", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnClockedIn.Location = new System.Drawing.Point(12, 220);
+            this.btnClockedIn.Location = new System.Drawing.Point(79, 456);
             this.btnClockedIn.Name = "btnClockedIn";
             this.btnClockedIn.Size = new System.Drawing.Size(204, 29);
             this.btnClockedIn.TabIndex = 12;
@@ -60,7 +59,7 @@
             // btnPayRoll
             // 
             this.btnPayRoll.Font = new System.Drawing.Font("Rockwell", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnPayRoll.Location = new System.Drawing.Point(254, 220);
+            this.btnPayRoll.Location = new System.Drawing.Point(79, 409);
             this.btnPayRoll.Name = "btnPayRoll";
             this.btnPayRoll.Size = new System.Drawing.Size(204, 29);
             this.btnPayRoll.TabIndex = 13;
@@ -71,33 +70,25 @@
             // btnEditTimeCards
             // 
             this.btnEditTimeCards.Font = new System.Drawing.Font("Rockwell", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnEditTimeCards.Location = new System.Drawing.Point(496, 220);
+            this.btnEditTimeCards.Location = new System.Drawing.Point(79, 502);
             this.btnEditTimeCards.Name = "btnEditTimeCards";
             this.btnEditTimeCards.Size = new System.Drawing.Size(204, 29);
             this.btnEditTimeCards.TabIndex = 14;
             this.btnEditTimeCards.Text = "Edit Time Cards";
             this.btnEditTimeCards.UseVisualStyleBackColor = true;
             // 
-            // lstDataBaseResults
-            // 
-            this.lstDataBaseResults.FormattingEnabled = true;
-            this.lstDataBaseResults.Location = new System.Drawing.Point(13, 13);
-            this.lstDataBaseResults.Name = "lstDataBaseResults";
-            this.lstDataBaseResults.Size = new System.Drawing.Size(687, 199);
-            this.lstDataBaseResults.TabIndex = 15;
-            // 
             // AdministratorForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.Window;
-            this.ClientSize = new System.Drawing.Size(712, 368);
-            this.Controls.Add(this.lstDataBaseResults);
+            this.ClientSize = new System.Drawing.Size(1243, 631);
             this.Controls.Add(this.btnEditTimeCards);
             this.Controls.Add(this.btnPayRoll);
             this.Controls.Add(this.btnClockedIn);
             this.Controls.Add(this.btnClose);
             this.Name = "AdministratorForm";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "AdministratorForm";
             this.ResumeLayout(false);
 
@@ -109,6 +100,5 @@
         private System.Windows.Forms.Button btnClockedIn;
         private System.Windows.Forms.Button btnPayRoll;
         private System.Windows.Forms.Button btnEditTimeCards;
-        private System.Windows.Forms.ListBox lstDataBaseResults;
     }
 }

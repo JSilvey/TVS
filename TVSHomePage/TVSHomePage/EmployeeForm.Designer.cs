@@ -34,7 +34,7 @@
             // btnClose
             // 
             this.btnClose.Font = new System.Drawing.Font("Rockwell", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnClose.Location = new System.Drawing.Point(211, 354);
+            this.btnClose.Location = new System.Drawing.Point(399, 425);
             this.btnClose.Name = "btnClose";
             this.btnClose.Size = new System.Drawing.Size(119, 29);
             this.btnClose.TabIndex = 11;
@@ -47,10 +47,11 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.Window;
-            this.ClientSize = new System.Drawing.Size(541, 395);
+            this.ClientSize = new System.Drawing.Size(917, 497);
             this.Controls.Add(this.btnClose);
             this.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
             this.Name = "EmployeeForm";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "EmployeeForm";
             this.ResumeLayout(false);
 

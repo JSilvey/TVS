@@ -28,34 +28,11 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.btnEmployee = new System.Windows.Forms.Button();
-            this.btnAdministrator = new System.Windows.Forms.Button();
             this.label1 = new System.Windows.Forms.Label();
             this.btnTimeClock = new System.Windows.Forms.Button();
             this.btnExit = new System.Windows.Forms.Button();
+            this.btnAdvanced = new System.Windows.Forms.Button();
             this.SuspendLayout();
-            // 
-            // btnEmployee
-            // 
-            this.btnEmployee.Font = new System.Drawing.Font("Rockwell", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnEmployee.Location = new System.Drawing.Point(36, 149);
-            this.btnEmployee.Name = "btnEmployee";
-            this.btnEmployee.Size = new System.Drawing.Size(213, 29);
-            this.btnEmployee.TabIndex = 0;
-            this.btnEmployee.Text = "Employee Advanced";
-            this.btnEmployee.UseVisualStyleBackColor = true;
-            this.btnEmployee.Click += new System.EventHandler(this.button1_Click);
-            // 
-            // btnAdministrator
-            // 
-            this.btnAdministrator.Font = new System.Drawing.Font("Rockwell", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnAdministrator.Location = new System.Drawing.Point(36, 200);
-            this.btnAdministrator.Name = "btnAdministrator";
-            this.btnAdministrator.Size = new System.Drawing.Size(213, 32);
-            this.btnAdministrator.TabIndex = 1;
-            this.btnAdministrator.Text = "Administrator Advanced";
-            this.btnAdministrator.UseVisualStyleBackColor = true;
-            this.btnAdministrator.Click += new System.EventHandler(this.btnAdministrator_Click);
             // 
             // label1
             // 
@@ -72,7 +49,7 @@
             // btnTimeClock
             // 
             this.btnTimeClock.Font = new System.Drawing.Font("Rockwell", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnTimeClock.Location = new System.Drawing.Point(36, 98);
+            this.btnTimeClock.Location = new System.Drawing.Point(36, 103);
             this.btnTimeClock.Name = "btnTimeClock";
             this.btnTimeClock.Size = new System.Drawing.Size(213, 29);
             this.btnTimeClock.TabIndex = 3;
@@ -83,7 +60,7 @@
             // btnExit
             // 
             this.btnExit.Font = new System.Drawing.Font("Rockwell", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnExit.Location = new System.Drawing.Point(36, 254);
+            this.btnExit.Location = new System.Drawing.Point(36, 197);
             this.btnExit.Name = "btnExit";
             this.btnExit.Size = new System.Drawing.Size(213, 32);
             this.btnExit.TabIndex = 4;
@@ -91,23 +68,34 @@
             this.btnExit.UseVisualStyleBackColor = true;
             this.btnExit.Click += new System.EventHandler(this.btnExit_Click);
             // 
+            // btnAdvanced
+            // 
+            this.btnAdvanced.Font = new System.Drawing.Font("Rockwell", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnAdvanced.Location = new System.Drawing.Point(36, 150);
+            this.btnAdvanced.Name = "btnAdvanced";
+            this.btnAdvanced.Size = new System.Drawing.Size(213, 29);
+            this.btnAdvanced.TabIndex = 5;
+            this.btnAdvanced.Text = "Advanced Features";
+            this.btnAdvanced.UseVisualStyleBackColor = true;
+            this.btnAdvanced.Click += new System.EventHandler(this.btnAdvanced_Click);
+            // 
             // HomePage
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
             this.BackColor = System.Drawing.SystemColors.Window;
-            this.ClientSize = new System.Drawing.Size(284, 319);
+            this.ClientSize = new System.Drawing.Size(284, 265);
+            this.Controls.Add(this.btnAdvanced);
             this.Controls.Add(this.btnExit);
             this.Controls.Add(this.btnTimeClock);
             this.Controls.Add(this.label1);
-            this.Controls.Add(this.btnAdministrator);
-            this.Controls.Add(this.btnEmployee);
             this.ForeColor = System.Drawing.SystemColors.ControlText;
             this.MaximizeBox = false;
             this.Name = "HomePage";
             this.StartPosition = System.Windows.Forms.FormStartPosition.Manual;
             this.Text = "Time Verification System";
+            this.Load += new System.EventHandler(this.HomePage_Load);
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -115,11 +103,10 @@
 
         #endregion
 
-        private System.Windows.Forms.Button btnEmployee;
-        private System.Windows.Forms.Button btnAdministrator;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Button btnTimeClock;
         private System.Windows.Forms.Button btnExit;
+        private System.Windows.Forms.Button btnAdvanced;
     }
 }
 
