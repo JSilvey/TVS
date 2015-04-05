@@ -52,7 +52,7 @@
             this.btnTimeClock.Location = new System.Drawing.Point(36, 103);
             this.btnTimeClock.Name = "btnTimeClock";
             this.btnTimeClock.Size = new System.Drawing.Size(213, 29);
-            this.btnTimeClock.TabIndex = 3;
+            this.btnTimeClock.TabIndex = 0;
             this.btnTimeClock.Text = "Time Clock";
             this.btnTimeClock.UseVisualStyleBackColor = true;
             this.btnTimeClock.Click += new System.EventHandler(this.btnTimeClock_Click);
@@ -63,7 +63,7 @@
             this.btnExit.Location = new System.Drawing.Point(36, 197);
             this.btnExit.Name = "btnExit";
             this.btnExit.Size = new System.Drawing.Size(213, 32);
-            this.btnExit.TabIndex = 4;
+            this.btnExit.TabIndex = 2;
             this.btnExit.Text = "Exit";
             this.btnExit.UseVisualStyleBackColor = true;
             this.btnExit.Click += new System.EventHandler(this.btnExit_Click);
@@ -74,8 +74,8 @@
             this.btnAdvanced.Location = new System.Drawing.Point(36, 150);
             this.btnAdvanced.Name = "btnAdvanced";
             this.btnAdvanced.Size = new System.Drawing.Size(213, 29);
-            this.btnAdvanced.TabIndex = 5;
-            this.btnAdvanced.Text = "Advanced Features";
+            this.btnAdvanced.TabIndex = 1;
+            this.btnAdvanced.Text = "Advanced Options";
             this.btnAdvanced.UseVisualStyleBackColor = true;
             this.btnAdvanced.Click += new System.EventHandler(this.btnAdvanced_Click);
             // 

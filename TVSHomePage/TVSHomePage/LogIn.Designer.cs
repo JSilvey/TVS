@@ -46,7 +46,7 @@
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(194, 56);
             this.label1.TabIndex = 20;
-            this.label1.Text = "Please log in \r\nto contine...";
+            this.label1.Text = "Please log in \r\nto continue...";
             this.label1.TextAlign = System.Drawing.ContentAlignment.TopCenter;
             // 
             // lblUserName

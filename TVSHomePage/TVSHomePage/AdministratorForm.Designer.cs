@@ -89,7 +89,7 @@
             this.Controls.Add(this.btnClose);
             this.Name = "AdministratorForm";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.Text = "AdministratorForm";
+            this.Text = "Administrator ";
             this.ResumeLayout(false);
 
         }

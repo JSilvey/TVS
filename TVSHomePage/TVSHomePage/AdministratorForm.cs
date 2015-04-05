@@ -12,7 +12,7 @@ namespace TVSHomePage
 {
     public partial class AdministratorForm : Form
     {
-        public AdministratorForm()
+        public AdministratorForm(string userID)
         {
             InitializeComponent();
         }

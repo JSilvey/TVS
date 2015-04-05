@@ -13,7 +13,7 @@ namespace TVSHomePage
 {
     public partial class TimeClockForm : Form
     {
-        //create a gloabal connection to the database
+        //create a global connection to the database
         private OleDbConnection connection = new OleDbConnection();
 
         public TimeClockForm()
@@ -244,6 +244,8 @@ namespace TVSHomePage
                         command.CommandText = setClockedOutCommand;
                         command.ExecuteNonQuery();
 
+                        connection.Close();
+
                         //Calculate hours worked
                         CalcHoursWorked(userPassword,longClockID);
 
@@ -253,7 +255,7 @@ namespace TVSHomePage
                         //Clear masked text box for next employee
                         mtbEmployeeID.Clear();
                     }
-                    connection.Close();
+                    
                 }
                 catch (Exception ex)
                 {
@@ -268,42 +270,57 @@ namespace TVSHomePage
             }       
          }
 
-        private void CalcHoursWorked(string userId, long clockID )
+        public void CalcHoursWorked(string userId, long clockID )
         {
-            //create a query to get clocked in and clocked out times
-            string getHoursQuery = "select ClockedIn, ClockedOut from TimeClock where Clock_ID="+clockID+" ";
+            try
+            {
+                connection.Open();
+                //create a query to get clocked in and clocked out times
+                string getHoursQuery = "select ClockedIn, ClockedOut from TimeClock where Clock_ID=" + clockID + " ";
 
-            //create a new command
-            OleDbCommand command = new OleDbCommand();
+                //create a new command
+                OleDbCommand command = new OleDbCommand();
 
-            //set command's connection to the global connection
-            command.Connection = connection;
+                //set command's connection to the global connection
+                command.Connection = connection;
 
-            //set command text to the query
-            command.CommandText = getHoursQuery;
+                //set command text to the query
+                command.CommandText = getHoursQuery;
 
-            //create a new reader object to read values from database
-            OleDbDataReader reader = command.ExecuteReader();
-            reader.Read();
-            
-            //Set the values to local variables
-            string clockInTime = reader["ClockedIn"].ToString();
-            string clockOutTime = reader["ClockedOut"].ToString();
+                //create a new reader object to read values from database
+                OleDbDataReader reader = command.ExecuteReader();
+                reader.Read();
 
-            //close the reader
-            reader.Close();
+                //Set the values to local variables
+                string clockInTime = reader["ClockedIn"].ToString();
+                string clockOutTime = reader["ClockedOut"].ToString();
 
-            //parse string into date/time objects
-            DateTime clockIn = DateTime.ParseExact(clockInTime, "HH:mm", System.Globalization.CultureInfo.CurrentCulture);
-            DateTime clockOut = DateTime.ParseExact(clockOutTime, "HH:mm", System.Globalization.CultureInfo.CurrentCulture);
+                //close the reader
+                reader.Close();
 
-            //calculate hours worked
-            TimeSpan workHours = clockOut.Subtract(clockIn);
+                //parse string into date/time objects
+                DateTime clockIn = DateTime.ParseExact(clockInTime, "HH:mm", System.Globalization.CultureInfo.CurrentCulture);
+                DateTime clockOut = DateTime.ParseExact(clockOutTime, "HH:mm", System.Globalization.CultureInfo.CurrentCulture);
 
-            string setHoursWorked = "update TimeClock set HoursWorked='" + workHours + "' where Clock_ID=" + clockID + "";
-            command.CommandText = setHoursWorked;
+                //calculate hours worked
+                TimeSpan workHours = clockOut.Subtract(clockIn);
 
-            command.ExecuteNonQuery();
+                string setHoursWorked = "update TimeClock set HoursWorked='" + workHours + "' where Clock_ID=" + clockID + "";
+                command.CommandText = setHoursWorked;
+
+                command.ExecuteNonQuery();
+                connection.Close();
+            }
+            catch (Exception ex)
+            {
+                connection.Close();
+                MessageBox.Show("An error has occured!" + ex.Message, "OOPS!", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            }
+            finally
+            {
+                connection.Close();
+            }
+
 
         }
     }

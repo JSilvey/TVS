@@ -63,8 +63,7 @@ namespace TVSHomePage
                 {
                     //close reader
                     reader.Close();
-                    //close login window
-                    this.Close();
+                    
                     //create a new reader to query user's ROLE (admin or user)
                     Command.CommandText = RoleQuery;
                     OleDbDataReader roleReader = Command.ExecuteReader();
@@ -75,13 +74,20 @@ namespace TVSHomePage
 
                         if (role != "admin") //not an admin, show advanced employee form
                         {
-                            EmployeeForm empForm = new EmployeeForm();
+                            
+                            frmEmployee empForm = new frmEmployee(txtPassword.Text);
                             empForm.Show();
+
+                            //close login window
+                            this.Close();
                         }
                         else //must be admin, show admin form
                         {
-                            AdministratorForm adminForm = new AdministratorForm();
+                            AdministratorForm adminForm = new AdministratorForm(txtPassword.Text);
                             adminForm.Show();
+
+                            //close login window
+                            this.Close();
                         }                        
                     }
                     //close roleReader
