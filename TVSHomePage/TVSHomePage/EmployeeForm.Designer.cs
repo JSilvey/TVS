@@ -70,10 +70,13 @@
             this.dgvUserInfo.AllowUserToDeleteRows = false;
             this.dgvUserInfo.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dgvUserInfo.Location = new System.Drawing.Point(77, 41);
+            this.dgvUserInfo.MultiSelect = false;
             this.dgvUserInfo.Name = "dgvUserInfo";
             this.dgvUserInfo.ReadOnly = true;
+            this.dgvUserInfo.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.dgvUserInfo.Size = new System.Drawing.Size(809, 44);
             this.dgvUserInfo.TabIndex = 14;
+            this.dgvUserInfo.TabStop = false;
             // 
             // txtStreet
             // 
@@ -247,10 +250,13 @@
             this.dgvTimeClock.AllowUserToDeleteRows = false;
             this.dgvTimeClock.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dgvTimeClock.Location = new System.Drawing.Point(433, 112);
+            this.dgvTimeClock.MultiSelect = false;
             this.dgvTimeClock.Name = "dgvTimeClock";
             this.dgvTimeClock.ReadOnly = true;
+            this.dgvTimeClock.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.dgvTimeClock.Size = new System.Drawing.Size(453, 262);
             this.dgvTimeClock.TabIndex = 28;
+            this.dgvTimeClock.TabStop = false;
             // 
             // label1
             // 

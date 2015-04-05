@@ -228,6 +228,13 @@ set StreetAddress='" + txtStreet.Text + "', City='" + txtCity.Text + "', State='
                 }
                 //reload the data in the tables
                 LoadData();
+
+                //Clear text boxes
+                txtStreet.Clear();
+                txtCity.Clear();
+                txtState.Clear();
+                txtZipcode.Clear();
+                txtPhone.Clear();
             }
         }
 
