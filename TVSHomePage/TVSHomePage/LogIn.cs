@@ -27,7 +27,7 @@ namespace TVSHomePage
             }
             catch(Exception ex)
             {
-                MessageBox.Show("There is an error in the database connection string (line25.)" + ex.Message, "Error", MessageBoxButtons.RetryCancel, MessageBoxIcon.Error);
+                MessageBox.Show("There is an error in the database connection string (line25.)\n" + ex.Message, "Error", MessageBoxButtons.RetryCancel, MessageBoxIcon.Error);
             }
         }
 
@@ -109,6 +109,12 @@ namespace TVSHomePage
                 connection.Close();
                 MessageBox.Show("There was an error connecting to the database.\n"+ex.Message, "ERROR",MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
+
+            //clear textboxes
+            txtUserName.Clear();
+            txtPassword.Clear();
+            //set focus back to username textbox
+            txtUserName.Focus();
         }
     }
 }

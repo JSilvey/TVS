@@ -159,6 +159,8 @@ namespace TVSHomePage
                 }
 
             }
+            //set focus back to text box
+            mtbEmployeeID.Focus();
         }
 
         private void btnClockOut_Click(object sender, EventArgs e)
@@ -267,7 +269,9 @@ namespace TVSHomePage
                     connection.Close();
                 }
 
-            }       
+            }
+            //set focus back to text box
+            mtbEmployeeID.Focus();
          }
 
         public void CalcHoursWorked(string userId, long clockID )
