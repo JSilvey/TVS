@@ -70,15 +70,16 @@ namespace TVSHomePage
                 daEmpInfo.Fill(dtEmpInfo);
                 dgvEmployees.DataSource = dtEmpInfo;
 
+                string loadEmpComboBox = "select EMP_ID from EmployeeData";
+                command.CommandText = loadEmpComboBox;
+                OleDbDataReader idReader = command.ExecuteReader();
+                while (idReader.Read())
+                {
+                    cbEmpID.Items.Add(idReader["EMP_ID"].ToString());
+                }
 
-                //Fill TimeCard Table
-                /*command.CommandText = loadTimeClockTableQuery;
-                OleDbDataAdapter daTimeClock = new OleDbDataAdapter(command);
-                DataTable dtTimeClock = new DataTable();
-                daTimeClock.Fill(dtTimeClock);
-                dgvTimeClock.DataSource = dtTimeClock;
-                */
-                //close db connection
+
+                
                 connection.Close();
             }
             catch (Exception ex)
@@ -95,19 +96,78 @@ namespace TVSHomePage
 
         private void btnAddEmployee_Click(object sender, EventArgs e)
         {
+            //open the add employee screen
             AddEmployeeForm addEmp = new AddEmployeeForm();
             addEmp.Show();
+        }     
+
+        private void btnReload_Click(object sender, EventArgs e)
+        {
+            //update/reload the forms
+            LoadData();
         }
 
         private void btnClose_Click(object sender, EventArgs e)
         {
+            connection.Close();
             this.Close();
+        }        
+
+        private void txtEditEmployee_Click(object sender, EventArgs e)
+        {
+            //check to make sure the user has chosen an employee ID
+            if (cbEmpID.Text == "")
+            {
+                //no employee ID selected
+                MessageBox.Show("You must select an employee ID to edit", "OOPS!", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            }
+            else
+            {
+                //employee Id was selected, open form passing the ID number
+                EditEmployeeForm editEmp = new EditEmployeeForm(cbEmpID.Text);
+                editEmp.Show();
+            }
         }
 
-        private void btnReload_Click(object sender, EventArgs e)
+        private void btnDelete_Click(object sender, EventArgs e)
         {
-            LoadData();
+            //check to make sure the user has chosen an employee ID
+            if (cbEmpID.Text == "")
+            {
+                //no employee ID selected
+                MessageBox.Show("You must select an employee ID to delete!", "OOPS!", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            }
+            else
+            {
+                //valid ID was selected
+                try
+                {
+                    connection.Open();
+                    OleDbCommand command = new OleDbCommand();
+                    command.Connection = connection;
+                    string deleteEmployeeQuery = "delete from EmployeeData where [EMP_ID]=" + cbEmpID.Text + "";
+                    command.CommandText = deleteEmployeeQuery;
+                    MessageBox.Show(deleteEmployeeQuery);
+                    command.ExecuteNonQuery();
+                    MessageBox.Show("Employee Record Deleted! ", "Success!", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    connection.Close();
+
+                    LoadData();
+                }
+                catch (Exception ex)
+                {
+                    connection.Close();
+                    MessageBox.Show("There was an error!\n" + ex.Message, "OOPS!", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
+                finally
+                {
+                    connection.Close();
+                }
+            }
         }
+        
+
+        
 
         
     }
