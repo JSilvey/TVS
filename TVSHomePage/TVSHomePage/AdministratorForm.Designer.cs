@@ -114,7 +114,7 @@
             this.btnEditEmployee.TabIndex = 20;
             this.btnEditEmployee.Text = "Edit Employee";
             this.btnEditEmployee.UseVisualStyleBackColor = true;
-            this.btnEditEmployee.Click += new System.EventHandler(this.txtEditEmployee_Click);
+            this.btnEditEmployee.Click += new System.EventHandler(this.btnEditEmployee_Click);
             // 
             // groupBox1
             // 

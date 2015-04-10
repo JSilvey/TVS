@@ -131,7 +131,7 @@ namespace TVSHomePage
             this.Close();
         }        
 
-        private void txtEditEmployee_Click(object sender, EventArgs e)
+        private void btnEditEmployee_Click(object sender, EventArgs e)
         {
             //check to make sure the user has chosen an employee ID
             if (cbEmpID.Text == "")
@@ -151,11 +151,10 @@ namespace TVSHomePage
                 
                 //employee Id was selected, open form passing the ID number
                 EditEmployeeForm editEmp = new EditEmployeeForm(emp_ID);
-                editEmp.Show();
-
-                cbEmpID.SelectedItem = null;
+                editEmp.Show();            
                                 
             }
+            
         }
 
         private void btnDelete_Click(object sender, EventArgs e)
@@ -216,11 +215,12 @@ namespace TVSHomePage
             string text = cbEmpID.Text;
             string[] words = text.Split(delimiter);
             string emp_ID = words[0];
-            string userPassword="";
+            string userPassword = "";
+           
 
             try
             {
-                connection.Open();
+                connection.Open();               
                                
                 //use the combobox to get the user ID and then retrieve user password
                 //the user password is the primary key for the TimeClock table
@@ -236,7 +236,7 @@ namespace TVSHomePage
                 pwReader.Close();
 
                 //use the user password to load data into the timecard table
-                string loadTimeCard = "select ClockedIn,ClockedOut,HoursWorked from TimeClock where UserPassword=" +userPassword + "";
+                string loadTimeCard = "select ClockedIn,ClockedOut,HoursWorked from TimeClock where UserPassword='" +userPassword + "'";
                 command.CommandText = loadTimeCard;
                 OleDbDataAdapter daTimeCard = new OleDbDataAdapter(command);
                 DataTable dtTimeCard = new DataTable();
