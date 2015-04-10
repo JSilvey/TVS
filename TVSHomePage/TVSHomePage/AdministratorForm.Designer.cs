@@ -33,15 +33,17 @@
             this.btnReload = new System.Windows.Forms.Button();
             this.btnClose = new System.Windows.Forms.Button();
             this.btnDelete = new System.Windows.Forms.Button();
-            this.txtEditEmployee = new System.Windows.Forms.Button();
+            this.btnEditEmployee = new System.Windows.Forms.Button();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
-            this.label2 = new System.Windows.Forms.Label();
             this.cbEmpID = new System.Windows.Forms.ComboBox();
             this.label1 = new System.Windows.Forms.Label();
+            this.lstClockedIn = new System.Windows.Forms.ListBox();
+            this.groupBox3 = new System.Windows.Forms.GroupBox();
             ((System.ComponentModel.ISupportInitialize)(this.dgvEmployees)).BeginInit();
             this.groupBox1.SuspendLayout();
             this.groupBox2.SuspendLayout();
+            this.groupBox3.SuspendLayout();
             this.SuspendLayout();
             // 
             // dgvEmployees
@@ -52,7 +54,7 @@
             this.dgvEmployees.Location = new System.Drawing.Point(16, 16);
             this.dgvEmployees.Name = "dgvEmployees";
             this.dgvEmployees.ReadOnly = true;
-            this.dgvEmployees.Size = new System.Drawing.Size(1215, 197);
+            this.dgvEmployees.Size = new System.Drawing.Size(1215, 274);
             this.dgvEmployees.TabIndex = 15;
             this.dgvEmployees.TabStop = false;
             // 
@@ -70,18 +72,19 @@
             // btnReload
             // 
             this.btnReload.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnReload.Location = new System.Drawing.Point(111, 298);
+            this.btnReload.Location = new System.Drawing.Point(596, 325);
             this.btnReload.Name = "btnReload";
-            this.btnReload.Size = new System.Drawing.Size(188, 47);
+            this.btnReload.Size = new System.Drawing.Size(139, 47);
             this.btnReload.TabIndex = 17;
             this.btnReload.Text = "Reload Data";
             this.btnReload.UseVisualStyleBackColor = true;
+            this.btnReload.Visible = false;
             this.btnReload.Click += new System.EventHandler(this.btnReload_Click);
             // 
             // btnClose
             // 
             this.btnClose.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnClose.Location = new System.Drawing.Point(111, 368);
+            this.btnClose.Location = new System.Drawing.Point(534, 664);
             this.btnClose.Name = "btnClose";
             this.btnClose.Size = new System.Drawing.Size(188, 47);
             this.btnClose.TabIndex = 18;
@@ -100,23 +103,23 @@
             this.btnDelete.UseVisualStyleBackColor = true;
             this.btnDelete.Click += new System.EventHandler(this.btnDelete_Click);
             // 
-            // txtEditEmployee
+            // btnEditEmployee
             // 
-            this.txtEditEmployee.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtEditEmployee.Location = new System.Drawing.Point(6, 140);
-            this.txtEditEmployee.Name = "txtEditEmployee";
-            this.txtEditEmployee.Size = new System.Drawing.Size(188, 47);
-            this.txtEditEmployee.TabIndex = 20;
-            this.txtEditEmployee.Text = "Edit Employee";
-            this.txtEditEmployee.UseVisualStyleBackColor = true;
-            this.txtEditEmployee.Click += new System.EventHandler(this.txtEditEmployee_Click);
+            this.btnEditEmployee.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnEditEmployee.Location = new System.Drawing.Point(6, 140);
+            this.btnEditEmployee.Name = "btnEditEmployee";
+            this.btnEditEmployee.Size = new System.Drawing.Size(188, 47);
+            this.btnEditEmployee.TabIndex = 20;
+            this.btnEditEmployee.Text = "Edit Employee";
+            this.btnEditEmployee.UseVisualStyleBackColor = true;
+            this.btnEditEmployee.Click += new System.EventHandler(this.txtEditEmployee_Click);
             // 
             // groupBox1
             // 
             this.groupBox1.Controls.Add(this.btnAddEmployee);
             this.groupBox1.Controls.Add(this.groupBox2);
-            this.groupBox1.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.groupBox1.Location = new System.Drawing.Point(994, 231);
+            this.groupBox1.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.groupBox1.Location = new System.Drawing.Point(994, 325);
             this.groupBox1.Name = "groupBox1";
             this.groupBox1.Size = new System.Drawing.Size(237, 388);
             this.groupBox1.TabIndex = 21;
@@ -125,9 +128,8 @@
             // 
             // groupBox2
             // 
-            this.groupBox2.Controls.Add(this.label2);
             this.groupBox2.Controls.Add(this.btnDelete);
-            this.groupBox2.Controls.Add(this.txtEditEmployee);
+            this.groupBox2.Controls.Add(this.btnEditEmployee);
             this.groupBox2.Controls.Add(this.cbEmpID);
             this.groupBox2.Controls.Add(this.label1);
             this.groupBox2.Location = new System.Drawing.Point(18, 21);
@@ -136,41 +138,53 @@
             this.groupBox2.TabIndex = 22;
             this.groupBox2.TabStop = false;
             // 
-            // label2
-            // 
-            this.label2.AutoSize = true;
-            this.label2.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label2.Location = new System.Drawing.Point(13, 94);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(82, 24);
-            this.label2.TabIndex = 2;
-            this.label2.Text = "Emp_ID:";
-            // 
             // cbEmpID
             // 
             this.cbEmpID.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.cbEmpID.FormattingEnabled = true;
-            this.cbEmpID.Location = new System.Drawing.Point(118, 91);
+            this.cbEmpID.Location = new System.Drawing.Point(6, 91);
             this.cbEmpID.Name = "cbEmpID";
-            this.cbEmpID.Size = new System.Drawing.Size(69, 32);
+            this.cbEmpID.Size = new System.Drawing.Size(188, 32);
             this.cbEmpID.TabIndex = 1;
             // 
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label1.Location = new System.Drawing.Point(21, 25);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(139, 40);
+            this.label1.Size = new System.Drawing.Size(159, 48);
             this.label1.TabIndex = 0;
             this.label1.Text = "Select Emp_ID to \r\nEdit or Delete";
+            // 
+            // lstClockedIn
+            // 
+            this.lstClockedIn.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lstClockedIn.FormattingEnabled = true;
+            this.lstClockedIn.ItemHeight = 24;
+            this.lstClockedIn.Location = new System.Drawing.Point(6, 14);
+            this.lstClockedIn.Name = "lstClockedIn";
+            this.lstClockedIn.Size = new System.Drawing.Size(235, 364);
+            this.lstClockedIn.TabIndex = 22;
+            // 
+            // groupBox3
+            // 
+            this.groupBox3.Controls.Add(this.lstClockedIn);
+            this.groupBox3.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.groupBox3.Location = new System.Drawing.Point(741, 325);
+            this.groupBox3.Name = "groupBox3";
+            this.groupBox3.Size = new System.Drawing.Size(247, 388);
+            this.groupBox3.TabIndex = 23;
+            this.groupBox3.TabStop = false;
+            this.groupBox3.Text = "Employees Currently Clocked In";
             // 
             // AdministratorForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.Window;
-            this.ClientSize = new System.Drawing.Size(1243, 631);
+            this.ClientSize = new System.Drawing.Size(1243, 727);
+            this.Controls.Add(this.groupBox3);
             this.Controls.Add(this.groupBox1);
             this.Controls.Add(this.btnClose);
             this.Controls.Add(this.btnReload);
@@ -178,10 +192,12 @@
             this.Name = "AdministratorForm";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Administrator ";
+            this.Activated += new System.EventHandler(this.btnReload_Click);
             ((System.ComponentModel.ISupportInitialize)(this.dgvEmployees)).EndInit();
             this.groupBox1.ResumeLayout(false);
             this.groupBox2.ResumeLayout(false);
             this.groupBox2.PerformLayout();
+            this.groupBox3.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }
@@ -193,11 +209,12 @@
         private System.Windows.Forms.Button btnReload;
         private System.Windows.Forms.Button btnClose;
         private System.Windows.Forms.Button btnDelete;
-        private System.Windows.Forms.Button txtEditEmployee;
+        private System.Windows.Forms.Button btnEditEmployee;
         private System.Windows.Forms.GroupBox groupBox1;
         private System.Windows.Forms.GroupBox groupBox2;
-        private System.Windows.Forms.Label label2;
         private System.Windows.Forms.ComboBox cbEmpID;
         private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.ListBox lstClockedIn;
+        private System.Windows.Forms.GroupBox groupBox3;
     }
 }

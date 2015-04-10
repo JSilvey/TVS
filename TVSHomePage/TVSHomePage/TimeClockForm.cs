@@ -58,8 +58,6 @@ namespace TVSHomePage
         {
             //Create a new time object
             DateTime dt = DateTime.Now;
-            String date = dt.ToString("d");
-            String time = dt.ToString("HH:mm");
             String clockID= null;
             String clockIn = "true";
             
@@ -81,7 +79,7 @@ namespace TVSHomePage
                     connection.Open();
 
                     //list of commands for database
-                    string clockInCommand = "insert into TimeClock (UserPassword,WorkDate,ClockedIn) values('" + userPassword + "','" + date + "','" + time + "') ";
+                    string clockInCommand = "insert into TimeClock (UserPassword,ClockedIn) values('" + userPassword + "','" + dt + "') ";
                     string setClockedInCommand = "update EmployeeData set isClockedIn='"+clockIn+"' where Password='"+userPassword+"'";
                     string isClockedInQuery = "select isClockedIn from EmployeeData where Password='"+userPassword+"' ";
                     string nameQuery = "select FirstName, LastName from EmployeeData where Password='" + userPassword + "'";
@@ -167,9 +165,6 @@ namespace TVSHomePage
         {
             //Create a new time object
             DateTime dt = DateTime.Now;
-            String date = dt.ToString("d");
-            String time = dt.ToString("HH:mm");
-
             String clockOut = "false";
             String clockID = "";
             String nullClockID = "";
@@ -232,7 +227,7 @@ namespace TVSHomePage
                         long longClockID = Convert.ToInt64(clockID);
                         
                         //clockout command 
-                        string clockOutCommand = "update TimeClock set ClockedOut='"+time+"' where Clock_ID="+longClockID+"";
+                        string clockOutCommand = "update TimeClock set ClockedOut='"+dt+"' where Clock_ID="+longClockID+"";
                         
                         //timestamp user's clockout time and date in database
                         command.CommandText = clockOutCommand;
@@ -303,9 +298,9 @@ namespace TVSHomePage
                 reader.Close();
 
                 //parse string into date/time objects
-                DateTime clockIn = DateTime.ParseExact(clockInTime, "HH:mm", System.Globalization.CultureInfo.CurrentCulture);
-                DateTime clockOut = DateTime.ParseExact(clockOutTime, "HH:mm", System.Globalization.CultureInfo.CurrentCulture);
-
+                DateTime clockIn = DateTime.Parse(clockInTime,System.Globalization.CultureInfo.CurrentCulture);
+                DateTime clockOut = DateTime.Parse(clockOutTime, System.Globalization.CultureInfo.CurrentCulture);
+                
                 //calculate hours worked
                 TimeSpan workHours = clockOut.Subtract(clockIn);
 

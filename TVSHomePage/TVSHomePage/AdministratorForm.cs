@@ -70,14 +70,30 @@ namespace TVSHomePage
                 daEmpInfo.Fill(dtEmpInfo);
                 dgvEmployees.DataSource = dtEmpInfo;
 
-                string loadEmpComboBox = "select EMP_ID from EmployeeData";
+                //Clear and Fill combobox
+                cbEmpID.Items.Clear();
+                string loadEmpComboBox = "select EMP_ID,FirstName,LastName from EmployeeData";
                 command.CommandText = loadEmpComboBox;
                 OleDbDataReader idReader = command.ExecuteReader();
                 while (idReader.Read())
                 {
-                    cbEmpID.Items.Add(idReader["EMP_ID"].ToString());
+                    //Add employees to combobox
+                    cbEmpID.Items.Add(idReader[0].ToString() + " " + idReader[1].ToString() + " " + idReader[2].ToString());
                 }
+                idReader.Close();
 
+                //Load list for employees already clocked in
+                lstClockedIn.Items.Clear();
+                string loadClockedInList = "select FirstName,LastName from EmployeeData where isClockedIn='" + true + "'";
+                command.CommandText = loadClockedInList;
+                OleDbDataReader clockedInReader = command.ExecuteReader();
+                while(clockedInReader.Read())
+                {
+                    lstClockedIn.Items.Add(clockedInReader["FirstName"].ToString() + " " + clockedInReader["LastName"].ToString());
+                }
+                clockedInReader.Close();
+
+                cbEmpID.SelectedItem = null;
 
                 
                 connection.Close();
@@ -96,6 +112,7 @@ namespace TVSHomePage
 
         private void btnAddEmployee_Click(object sender, EventArgs e)
         {
+            connection.Close();
             //open the add employee screen
             AddEmployeeForm addEmp = new AddEmployeeForm();
             addEmp.Show();
@@ -103,6 +120,7 @@ namespace TVSHomePage
 
         private void btnReload_Click(object sender, EventArgs e)
         {
+            connection.Close();
             //update/reload the forms
             LoadData();
         }
@@ -123,14 +141,26 @@ namespace TVSHomePage
             }
             else
             {
+                //Split combobox string in order to select just the EMP_ID
+                //create a delimiter definition (a space is my delimiter)
+                char delimiter = ' ';
+                string text = cbEmpID.Text;
+                string[] words = text.Split(delimiter);
+                string emp_ID = words[0];              
+                
+                
                 //employee Id was selected, open form passing the ID number
-                EditEmployeeForm editEmp = new EditEmployeeForm(cbEmpID.Text);
+                EditEmployeeForm editEmp = new EditEmployeeForm(emp_ID);
                 editEmp.Show();
+
+                cbEmpID.SelectedItem = null;
+                                
             }
         }
 
         private void btnDelete_Click(object sender, EventArgs e)
         {
+            connection.Close();
             //check to make sure the user has chosen an employee ID
             if (cbEmpID.Text == "")
             {
@@ -139,19 +169,31 @@ namespace TVSHomePage
             }
             else
             {
+                //Split combobox string in order to select just the EMP_ID
+                //create a delimiter definition (a space is my delimiter)
+                char delimiter = ' ';
+                string text = cbEmpID.Text;
+                string[] words = text.Split(delimiter);
+                string emp_ID = words[0];  
+                               
+                
                 //valid ID was selected
                 try
                 {
                     connection.Open();
                     OleDbCommand command = new OleDbCommand();
                     command.Connection = connection;
-                    string deleteEmployeeQuery = "delete from EmployeeData where [EMP_ID]=" + cbEmpID.Text + "";
+                    string deleteEmployeeQuery = "delete from EmployeeData where [EMP_ID]=" + emp_ID + "";
                     command.CommandText = deleteEmployeeQuery;
-                    MessageBox.Show(deleteEmployeeQuery);
                     command.ExecuteNonQuery();
                     MessageBox.Show("Employee Record Deleted! ", "Success!", MessageBoxButtons.OK, MessageBoxIcon.Information);
                     connection.Close();
 
+                    //clear Combo box entry
+                    cbEmpID.Text = null;
+                    cbEmpID.SelectedItem = null;
+
+                    //reload table data
                     LoadData();
                 }
                 catch (Exception ex)

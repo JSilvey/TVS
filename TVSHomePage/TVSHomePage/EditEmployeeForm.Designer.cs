@@ -60,7 +60,6 @@
             this.txtFirstName = new System.Windows.Forms.TextBox();
             this.btnClockIn = new System.Windows.Forms.Button();
             this.btnClockOut = new System.Windows.Forms.Button();
-            this.label16 = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
             // label15
@@ -263,10 +262,8 @@
             this.txtPassword.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtPassword.Location = new System.Drawing.Point(493, 316);
             this.txtPassword.Name = "txtPassword";
-            this.txtPassword.ReadOnly = true;
             this.txtPassword.Size = new System.Drawing.Size(212, 31);
             this.txtPassword.TabIndex = 43;
-            this.txtPassword.TabStop = false;
             // 
             // txtDOB
             // 
@@ -349,6 +346,7 @@
             this.btnClockIn.TabIndex = 64;
             this.btnClockIn.Text = "Clock Employee In";
             this.btnClockIn.UseVisualStyleBackColor = true;
+            this.btnClockIn.Click += new System.EventHandler(this.btnClockIn_Click);
             // 
             // btnClockOut
             // 
@@ -359,22 +357,13 @@
             this.btnClockOut.TabIndex = 65;
             this.btnClockOut.Text = "Clock Employee Out";
             this.btnClockOut.UseVisualStyleBackColor = true;
-            // 
-            // label16
-            // 
-            this.label16.AutoSize = true;
-            this.label16.Location = new System.Drawing.Point(490, 300);
-            this.label16.Name = "label16";
-            this.label16.Size = new System.Drawing.Size(229, 13);
-            this.label16.TabIndex = 66;
-            this.label16.Text = "Note: Employee password cannot be changed.";
+            this.btnClockOut.Click += new System.EventHandler(this.btnClockOut_Click);
             // 
             // EditEmployeeForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(946, 731);
-            this.Controls.Add(this.label16);
             this.Controls.Add(this.btnClockOut);
             this.Controls.Add(this.btnClockIn);
             this.Controls.Add(this.label15);
@@ -449,6 +438,5 @@
         private System.Windows.Forms.TextBox txtFirstName;
         private System.Windows.Forms.Button btnClockIn;
         private System.Windows.Forms.Button btnClockOut;
-        private System.Windows.Forms.Label label16;
     }
 }

@@ -53,7 +53,7 @@ namespace TVSHomePage
                 command.Connection = connection;
                 string getUserNameQuery = "select FirstName,LastName from EmployeeData where Password='"+id+"' ";
                 string loadEmpInfoTableQuery = "select FirstName,LastName,StreetAddress,City,State,Zip,Phone from EmployeeData where Password='" + id + "'";
-                string loadTimeClockTableQuery = "select WorkDate,ClockedIn,ClockedOut,HoursWorked from TimeClock where UserPassword='"+id+"'";
+                string loadTimeClockTableQuery = "select ClockedIn,ClockedOut,HoursWorked from TimeClock where UserPassword='"+id+"'";
                 
                 //Get user first and last name and greet in title bar
                 command.CommandText = getUserNameQuery;
@@ -104,8 +104,6 @@ namespace TVSHomePage
         {
             //Create a new time object
             DateTime dt = DateTime.Now;
-            String date = dt.ToString("d");
-            String time = dt.ToString("HH:mm");
             String clockID = null;
             String clockIn = "true";
 
@@ -115,7 +113,7 @@ namespace TVSHomePage
                 connection.Open();
 
                 //list of commands for database
-                string clockInCommand = "insert into TimeClock (UserPassword,WorkDate,ClockedIn) values('" + id + "','" + date + "','" + time + "') ";
+                string clockInCommand = "insert into TimeClock (UserPassword,ClockedIn) values('" + id + "','" + dt + "') ";
                 string setClockedInCommand = "update EmployeeData set isClockedIn='" + clockIn + "' where Password='" + id + "'";
                 string isClockedInQuery = "select isClockedIn from EmployeeData where Password='" + id + "' ";
                 string nameQuery = "select FirstName, LastName from EmployeeData where Password='" + id + "'";
@@ -242,9 +240,6 @@ set StreetAddress='" + txtStreet.Text + "', City='" + txtCity.Text + "', State='
         {
             //Create a new time object
             DateTime dt = DateTime.Now;
-            String date = dt.ToString("d");
-            String time = dt.ToString("HH:mm");
-
             String clockOut = "false";
             String clockID = "";
             String nullClockID = "";
@@ -298,7 +293,7 @@ set StreetAddress='" + txtStreet.Text + "', City='" + txtCity.Text + "', State='
                         long longClockID = Convert.ToInt64(clockID);
 
                         //clockout command 
-                        string clockOutCommand = "update TimeClock set ClockedOut='" + time + "' where Clock_ID=" + longClockID + "";
+                        string clockOutCommand = "update TimeClock set ClockedOut='" + dt + "' where Clock_ID=" + longClockID + "";
 
                         //timestamp user's clockout time and date in database
                         command.CommandText = clockOutCommand;
