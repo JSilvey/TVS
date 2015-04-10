@@ -207,10 +207,54 @@ namespace TVSHomePage
                 }
             }
         }
-        
 
-        
+        private void cbEmpID_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            //Split combobox string in order to select just the EMP_ID
+            //create a delimiter definition (a space is my delimiter)
+            char delimiter = ' ';
+            string text = cbEmpID.Text;
+            string[] words = text.Split(delimiter);
+            string emp_ID = words[0];
+            string userPassword="";
 
-        
+            try
+            {
+                connection.Open();
+                               
+                //use the combobox to get the user ID and then retrieve user password
+                //the user password is the primary key for the TimeClock table
+                OleDbCommand command = new OleDbCommand();
+                command.Connection = connection;
+                string getPasswordQuery = "select [Password] from EmployeeData where EMP_ID="+emp_ID+" ";
+                command.CommandText = getPasswordQuery;
+                OleDbDataReader pwReader = command.ExecuteReader();
+                while (pwReader.Read())
+                {
+                    userPassword = pwReader["Password"].ToString();
+                }
+                pwReader.Close();
+
+                //use the user password to load data into the timecard table
+                string loadTimeCard = "select ClockedIn,ClockedOut,HoursWorked from TimeClock where UserPassword=" +userPassword + "";
+                command.CommandText = loadTimeCard;
+                OleDbDataAdapter daTimeCard = new OleDbDataAdapter(command);
+                DataTable dtTimeCard = new DataTable();
+                daTimeCard.Fill(dtTimeCard);
+                dgvTimeTable.DataSource = dtTimeCard;
+
+                connection.Close();
+
+            }
+            catch (Exception ex)
+            {
+                connection.Close();
+                MessageBox.Show("There was an error!\n" + ex.Message, "OOPS!", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+            finally
+            {
+                connection.Close();
+            }
+        }    
     }
 }

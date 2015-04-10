@@ -40,10 +40,12 @@
             this.label1 = new System.Windows.Forms.Label();
             this.lstClockedIn = new System.Windows.Forms.ListBox();
             this.groupBox3 = new System.Windows.Forms.GroupBox();
+            this.dgvTimeTable = new System.Windows.Forms.DataGridView();
             ((System.ComponentModel.ISupportInitialize)(this.dgvEmployees)).BeginInit();
             this.groupBox1.SuspendLayout();
             this.groupBox2.SuspendLayout();
             this.groupBox3.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.dgvTimeTable)).BeginInit();
             this.SuspendLayout();
             // 
             // dgvEmployees
@@ -72,7 +74,7 @@
             // btnReload
             // 
             this.btnReload.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnReload.Location = new System.Drawing.Point(596, 325);
+            this.btnReload.Location = new System.Drawing.Point(389, 664);
             this.btnReload.Name = "btnReload";
             this.btnReload.Size = new System.Drawing.Size(139, 47);
             this.btnReload.TabIndex = 17;
@@ -146,6 +148,7 @@
             this.cbEmpID.Name = "cbEmpID";
             this.cbEmpID.Size = new System.Drawing.Size(188, 32);
             this.cbEmpID.TabIndex = 1;
+            this.cbEmpID.SelectedIndexChanged += new System.EventHandler(this.cbEmpID_SelectedIndexChanged);
             // 
             // label1
             // 
@@ -178,12 +181,21 @@
             this.groupBox3.TabStop = false;
             this.groupBox3.Text = "Employees Currently Clocked In";
             // 
+            // dgvTimeTable
+            // 
+            this.dgvTimeTable.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dgvTimeTable.Location = new System.Drawing.Point(16, 339);
+            this.dgvTimeTable.Name = "dgvTimeTable";
+            this.dgvTimeTable.Size = new System.Drawing.Size(706, 206);
+            this.dgvTimeTable.TabIndex = 24;
+            // 
             // AdministratorForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.Window;
             this.ClientSize = new System.Drawing.Size(1243, 727);
+            this.Controls.Add(this.dgvTimeTable);
             this.Controls.Add(this.groupBox3);
             this.Controls.Add(this.groupBox1);
             this.Controls.Add(this.btnClose);
@@ -198,6 +210,7 @@
             this.groupBox2.ResumeLayout(false);
             this.groupBox2.PerformLayout();
             this.groupBox3.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.dgvTimeTable)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -216,5 +229,6 @@
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.ListBox lstClockedIn;
         private System.Windows.Forms.GroupBox groupBox3;
+        private System.Windows.Forms.DataGridView dgvTimeTable;
     }
 }
