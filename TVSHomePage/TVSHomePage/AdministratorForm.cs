@@ -133,7 +133,7 @@ namespace TVSHomePage
 
         private void btnEditEmployee_Click(object sender, EventArgs e)
         {
-            //check to make sure the user has chosen an employee ID
+            //check to make sure the user has chosen an employee ID 
             if (cbEmpID.Text == "")
             {
                 //no employee ID selected

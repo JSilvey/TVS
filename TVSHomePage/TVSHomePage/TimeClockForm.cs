@@ -302,9 +302,12 @@ namespace TVSHomePage
                 DateTime clockOut = DateTime.Parse(clockOutTime, System.Globalization.CultureInfo.CurrentCulture);
                 
                 //calculate hours worked
-                TimeSpan workHours = clockOut.Subtract(clockIn);
+                TimeSpan workHours = (clockOut.Subtract(clockIn));
+                int hours = workHours.Hours;
+                int minutes = ((workHours.Minutes) % 60);
+                string timeWorked = hours.ToString() + " hours, " + minutes.ToString() + " minutes";
 
-                string setHoursWorked = "update TimeClock set HoursWorked='" + workHours + "' where Clock_ID=" + clockID + "";
+                string setHoursWorked = "update TimeClock set HoursWorked='" + timeWorked + "' where Clock_ID=" + clockID + "";
                 command.CommandText = setHoursWorked;
 
                 command.ExecuteNonQuery();
