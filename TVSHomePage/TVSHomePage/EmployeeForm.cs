@@ -70,6 +70,10 @@ namespace TVSHomePage
                 DataTable dtEmpInfo = new DataTable();
                 daEmpInfo.Fill(dtEmpInfo);
                 dgvUserInfo.DataSource = dtEmpInfo;
+                dgvUserInfo.AutoResizeColumns();
+                dgvUserInfo.ClearSelection();
+                dgvUserInfo.CurrentCell = null;
+                
 
 
                 //Fill TimeCard Table
@@ -78,14 +82,21 @@ namespace TVSHomePage
                 DataTable dtTimeClock = new DataTable();
                 daTimeClock.Fill(dtTimeClock);
                 dgvTimeClock.DataSource = dtTimeClock;
+                dgvTimeClock.AutoResizeColumns();
+                dgvTimeClock.ClearSelection();
+                dgvTimeClock.CurrentCell = null;
+                
                 
                 //close db connection
                 connection.Close();
-            }
+
+                
+                
+            }                
             catch (Exception ex)
             {
                 connection.Close();
-                MessageBox.Show("There was an error" + ex.Message, "ERROR", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show("There was an error in loaddata method\n" + ex.Message, "ERROR", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
             finally
             {
@@ -239,6 +250,7 @@ set StreetAddress='" + txtStreet.Text + "', City='" + txtCity.Text + "', State='
 
         private void btnClockOut_Click(object sender, EventArgs e)
         {
+            
             //Create a new time object
             DateTime dt = DateTime.Now;
             String clockOut = "false";
@@ -318,8 +330,10 @@ set StreetAddress='" + txtStreet.Text + "', City='" + txtCity.Text + "', State='
                         //Show clock in Confirmation Message Box
                         MessageBox.Show(userName + " clocked out at:\n" + dt, "Clock Out Confirmation");
 
+                        connection.Close();
+
                     }
-                    
+                    connection.Close();                                   
 
                     //reload table data
                     LoadData();
@@ -327,7 +341,7 @@ set StreetAddress='" + txtStreet.Text + "', City='" + txtCity.Text + "', State='
                 catch (Exception ex)
                 {
                     connection.Close();
-                    MessageBox.Show("There was an error connecting to the database.\n" + ex.Message, "ERROR", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    MessageBox.Show("There was an error in the clockout method.\n" + ex.Message, "ERROR", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 }
                 finally
                 {

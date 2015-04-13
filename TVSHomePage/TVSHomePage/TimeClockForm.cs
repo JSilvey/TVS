@@ -329,10 +329,35 @@ namespace TVSHomePage
                 getHoursReader.Close();
                 string totalHours=(TotalHours(results));
 
-                //write totalhours to database
+                //write totalhours to TimeClock table in database
                 string writeTotalHours = "update TimeClock set TotalHoursWorked='"+totalHours+"' where Clock_ID="+clockID+"";
                 command.CommandText = writeTotalHours;
                 command.ExecuteNonQuery();
+                
+
+                //write totalhours to PayCheck table in database
+                string readPayCheckTable = "select UserPassword from PayCheck";
+                string writePayCheckTable = null;
+                command.CommandText = readPayCheckTable;
+                OleDbDataReader payCheckReader = command.ExecuteReader();
+                while (payCheckReader.Read())
+                {
+                    if (payCheckReader["UserPassword"].ToString() != userId) 
+                    {
+                        //if the userID is not present in the table yet add the userID and total hours
+                        writePayCheckTable = "insert into PayCheck (UserPassword,TotalHours) values('" + userId + "','" + totalHours + "')";
+                    }
+                    else
+                    {
+                        //if the userId is already present in the table update the total hours
+                        writePayCheckTable = "update PayCheck set TotalHours='" + totalHours + "'where UserPassword='" + userId + "'";
+                        break;
+                    }
+                }
+                payCheckReader.Close();                
+                command.CommandText = writePayCheckTable;
+                command.ExecuteNonQuery();
+
                 connection.Close();
             }
             catch (Exception ex)

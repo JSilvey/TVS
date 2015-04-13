@@ -268,26 +268,79 @@ namespace TVSHomePage
 
         private void btnPayroll_Click(object sender, EventArgs e)
         {
+            DateTime dt = DateTime.Now;
+            string payedOut = "no";
+            string userPassword;
+            string totalPay;
+
+            //create a dictionary to store userPassword and totalpay as strings from database
+            Dictionary<string, string> dictionaryPayStrings = new Dictionary<string, string>();
+
+            //create a second dictionary to store userPassword as string and totalpay as double converted to seconds
+            Dictionary<string, double> dictionaryPayInSeconds = new Dictionary<string, double>();
+
+            //create a third dictionary to store userPassword and pay amount
+            Dictionary<string, double> dictionaryPayAmount = new Dictionary<string, double>();
+
             try
             {
                 connection.Open();
 
-                //use the combobox to get the user ID and then retrieve user password
-                //the user password is the primary key for the TimeClock table
+                //Populate dictionary from PayCheck Table
                 OleDbCommand command = new OleDbCommand();
                 command.Connection = connection;
-                string loadTableQuery = "select UserPassword,TotalHoursWorked from TimeClock where PayedOut='"+"no"+"'";
-                command.CommandText = loadTableQuery;
-               
-                OleDbDataAdapter daTimeCard = new OleDbDataAdapter(command);
-                DataTable dtTimeCard = new DataTable();
-                daTimeCard.Fill(dtTimeCard);
-                dgvPayroll.DataSource = dtTimeCard;
-                dgvPayroll.AutoResizeColumns();
-                dgvPayroll.ClearSelection();
-                dgvPayroll.CurrentCell = null;
+                string readPayCheckTable = "select UserPassword,TotalHours from PayCheck";
+                command.CommandText = readPayCheckTable;
+                OleDbDataReader pwReader = command.ExecuteReader();
+                while (pwReader.Read())
+                {
+                    userPassword = pwReader["UserPassword"].ToString();
+                    totalPay = pwReader["TotalHours"].ToString();
+                    dictionaryPayStrings.Add(userPassword, totalPay);
+                }
+                pwReader.Close();
+                connection.Close();
+
+                //convert dictionary time from string to double and populate dictionaryPayInSeconds 
+                foreach(KeyValuePair<string,string> userPw in dictionaryPayStrings)
+                {
+                    TimeSpan time = TimeSpan.Parse(userPw.Value);                    
+                    double sec = time.TotalSeconds;
+                    dictionaryPayInSeconds.Add(userPw.Key, sec);                    
+                }
+                
+                //convert payInSeconds to gross pay and populate payAmount Dictionary
+                foreach(KeyValuePair<string,double> userIDNum in dictionaryPayInSeconds)
+                {
+                    
+                    connection.Open();
+                    string readPayRate = "select RatePerHour from EmployeeData where [Password]='"+userIDNum.Key+"'";
+                    command.CommandText = readPayRate;
+                    OleDbDataReader payRateReader = command.ExecuteReader();
+                    payRateReader.Read();
+                    double payPerSecond = (Convert.ToDouble(payRateReader["RatePerHour"].ToString()) / 3600);
+                    double grossPay = payPerSecond * (userIDNum.Value);
+                    dictionaryPayAmount.Add(userIDNum.Key, grossPay);
+                    payRateReader.Close();
+                    connection.Close();
+
+                    //show paid out date on timeclock and reset totalhours in paycheck table
+                    connection.Open();
+                    string editPayedOut = "update TimeClock set PayedOut='" + "Yes, on " + dt + "' where UserPassword='" + userIDNum.Key + "' and PayedOut='"+payedOut+"'";
+                    command.CommandText = editPayedOut;
+                    command.ExecuteNonQuery();
+                    string resetTotalHours = "update PayCheck set TotalHours='"+"0:0:0"+"'where UserPassword='"+userIDNum.Key+"'";
+                    command.CommandText = resetTotalHours;
+                    command.ExecuteNonQuery();
+                    connection.Close();
+                }
+                
 
                 
+                
+
+               
+
                 connection.Close();
 
             }
@@ -300,9 +353,10 @@ namespace TVSHomePage
             {
                 connection.Close();
             }
-        }
 
-          
+
+
+        }         
       
     }
 }

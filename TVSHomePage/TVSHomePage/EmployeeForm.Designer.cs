@@ -45,11 +45,11 @@
             this.txtZipcode = new System.Windows.Forms.TextBox();
             this.txtPhone = new System.Windows.Forms.TextBox();
             this.gbEditInfo = new System.Windows.Forms.GroupBox();
+            this.btnUpdateInfo = new System.Windows.Forms.Button();
             this.label8 = new System.Windows.Forms.Label();
             this.label9 = new System.Windows.Forms.Label();
             this.dgvTimeClock = new System.Windows.Forms.DataGridView();
             this.label1 = new System.Windows.Forms.Label();
-            this.btnUpdateInfo = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.dgvUserInfo)).BeginInit();
             this.groupBox1.SuspendLayout();
             this.gbEditInfo.SuspendLayout();
@@ -68,6 +68,7 @@
             // 
             this.dgvUserInfo.AllowUserToAddRows = false;
             this.dgvUserInfo.AllowUserToDeleteRows = false;
+            this.dgvUserInfo.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.AllCells;
             this.dgvUserInfo.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dgvUserInfo.Location = new System.Drawing.Point(97, 48);
             this.dgvUserInfo.MultiSelect = false;
@@ -224,6 +225,17 @@
             this.gbEditInfo.TabStop = false;
             this.gbEditInfo.Text = "Edit Info";
             // 
+            // btnUpdateInfo
+            // 
+            this.btnUpdateInfo.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnUpdateInfo.Location = new System.Drawing.Point(71, 223);
+            this.btnUpdateInfo.Name = "btnUpdateInfo";
+            this.btnUpdateInfo.Size = new System.Drawing.Size(188, 47);
+            this.btnUpdateInfo.TabIndex = 8;
+            this.btnUpdateInfo.Text = "Update Info";
+            this.btnUpdateInfo.UseVisualStyleBackColor = true;
+            this.btnUpdateInfo.Click += new System.EventHandler(this.btnUpdateInfo_Click);
+            // 
             // label8
             // 
             this.label8.AutoSize = true;
@@ -248,6 +260,7 @@
             // 
             this.dgvTimeClock.AllowUserToAddRows = false;
             this.dgvTimeClock.AllowUserToDeleteRows = false;
+            this.dgvTimeClock.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.AllCells;
             this.dgvTimeClock.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dgvTimeClock.Location = new System.Drawing.Point(453, 119);
             this.dgvTimeClock.MultiSelect = false;
@@ -267,17 +280,6 @@
             this.label1.Size = new System.Drawing.Size(101, 16);
             this.label1.TabIndex = 29;
             this.label1.Text = "Work History:";
-            // 
-            // btnUpdateInfo
-            // 
-            this.btnUpdateInfo.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnUpdateInfo.Location = new System.Drawing.Point(71, 223);
-            this.btnUpdateInfo.Name = "btnUpdateInfo";
-            this.btnUpdateInfo.Size = new System.Drawing.Size(188, 47);
-            this.btnUpdateInfo.TabIndex = 8;
-            this.btnUpdateInfo.Text = "Update Info";
-            this.btnUpdateInfo.UseVisualStyleBackColor = true;
-            this.btnUpdateInfo.Click += new System.EventHandler(this.btnUpdateInfo_Click);
             // 
             // frmEmployee
             // 

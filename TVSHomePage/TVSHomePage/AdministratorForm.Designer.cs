@@ -42,14 +42,12 @@
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.label2 = new System.Windows.Forms.Label();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
-            this.dgvPayroll = new System.Windows.Forms.DataGridView();
             this.btnPayroll = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.dgvEmployees)).BeginInit();
             this.groupBox3.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvTimeTable)).BeginInit();
             this.groupBox1.SuspendLayout();
             this.groupBox2.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.dgvPayroll)).BeginInit();
             this.SuspendLayout();
             // 
             // dgvEmployees
@@ -209,18 +207,10 @@
             this.groupBox2.TabIndex = 26;
             this.groupBox2.TabStop = false;
             // 
-            // dgvPayroll
-            // 
-            this.dgvPayroll.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dgvPayroll.Location = new System.Drawing.Point(636, 387);
-            this.dgvPayroll.Name = "dgvPayroll";
-            this.dgvPayroll.Size = new System.Drawing.Size(307, 140);
-            this.dgvPayroll.TabIndex = 27;
-            // 
             // btnPayroll
             // 
             this.btnPayroll.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnPayroll.Location = new System.Drawing.Point(755, 537);
+            this.btnPayroll.Location = new System.Drawing.Point(712, 387);
             this.btnPayroll.Name = "btnPayroll";
             this.btnPayroll.Size = new System.Drawing.Size(188, 47);
             this.btnPayroll.TabIndex = 28;
@@ -235,7 +225,6 @@
             this.BackColor = System.Drawing.SystemColors.Window;
             this.ClientSize = new System.Drawing.Size(1243, 643);
             this.Controls.Add(this.btnPayroll);
-            this.Controls.Add(this.dgvPayroll);
             this.Controls.Add(this.groupBox2);
             this.Controls.Add(this.groupBox1);
             this.Controls.Add(this.groupBox3);
@@ -252,7 +241,6 @@
             this.groupBox1.PerformLayout();
             this.groupBox2.ResumeLayout(false);
             this.groupBox2.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.dgvPayroll)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -273,7 +261,6 @@
         private System.Windows.Forms.GroupBox groupBox1;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.GroupBox groupBox2;
-        private System.Windows.Forms.DataGridView dgvPayroll;
         private System.Windows.Forms.Button btnPayroll;
     }
 }
