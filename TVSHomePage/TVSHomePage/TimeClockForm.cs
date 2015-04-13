@@ -335,27 +335,27 @@ namespace TVSHomePage
                 command.ExecuteNonQuery();
                 
 
-                //write totalhours to PayCheck table in database
-                string readPayCheckTable = "select UserPassword from PayCheck";
-                string writePayCheckTable = null;
-                command.CommandText = readPayCheckTable;
-                OleDbDataReader payCheckReader = command.ExecuteReader();
-                while (payCheckReader.Read())
+                //write totalhours to PayPeriod table in database
+                string readPayPeriodTable = "select UserPassword from PayPeriod";
+                string writePayPeriodTable = null;
+                command.CommandText = readPayPeriodTable;
+                OleDbDataReader payPeriodReader = command.ExecuteReader();
+                while (payPeriodReader.Read())
                 {
-                    if (payCheckReader["UserPassword"].ToString() != userId) 
+                    if (payPeriodReader["UserPassword"].ToString() != userId) 
                     {
                         //if the userID is not present in the table yet add the userID and total hours
-                        writePayCheckTable = "insert into PayCheck (UserPassword,TotalHours) values('" + userId + "','" + totalHours + "')";
+                        writePayPeriodTable = "insert into PayPeriod (UserPassword,TotalHours) values('" + userId + "','" + totalHours + "')";
                     }
                     else
                     {
                         //if the userId is already present in the table update the total hours
-                        writePayCheckTable = "update PayCheck set TotalHours='" + totalHours + "'where UserPassword='" + userId + "'";
+                        writePayPeriodTable = "update PayPeriod set TotalHours='" + totalHours + "'where UserPassword='" + userId + "'";
                         break;
                     }
                 }
-                payCheckReader.Close();                
-                command.CommandText = writePayCheckTable;
+                payPeriodReader.Close();                
+                command.CommandText = writePayPeriodTable;
                 command.ExecuteNonQuery();
 
                 connection.Close();

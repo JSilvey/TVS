@@ -50,10 +50,13 @@
             this.label9 = new System.Windows.Forms.Label();
             this.dgvTimeClock = new System.Windows.Forms.DataGridView();
             this.label1 = new System.Windows.Forms.Label();
+            this.label10 = new System.Windows.Forms.Label();
+            this.dgvPayHistory = new System.Windows.Forms.DataGridView();
             ((System.ComponentModel.ISupportInitialize)(this.dgvUserInfo)).BeginInit();
             this.groupBox1.SuspendLayout();
             this.gbEditInfo.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvTimeClock)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dgvPayHistory)).BeginInit();
             this.SuspendLayout();
             // 
             // label2
@@ -267,7 +270,7 @@
             this.dgvTimeClock.Name = "dgvTimeClock";
             this.dgvTimeClock.ReadOnly = true;
             this.dgvTimeClock.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dgvTimeClock.Size = new System.Drawing.Size(536, 262);
+            this.dgvTimeClock.Size = new System.Drawing.Size(536, 149);
             this.dgvTimeClock.TabIndex = 28;
             this.dgvTimeClock.TabStop = false;
             // 
@@ -281,12 +284,39 @@
             this.label1.TabIndex = 29;
             this.label1.Text = "Work History:";
             // 
+            // label10
+            // 
+            this.label10.AutoSize = true;
+            this.label10.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label10.Location = new System.Drawing.Point(450, 273);
+            this.label10.Name = "label10";
+            this.label10.Size = new System.Drawing.Size(92, 16);
+            this.label10.TabIndex = 30;
+            this.label10.Text = "Pay History:";
+            // 
+            // dgvPayHistory
+            // 
+            this.dgvPayHistory.AllowUserToAddRows = false;
+            this.dgvPayHistory.AllowUserToDeleteRows = false;
+            this.dgvPayHistory.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.AllCells;
+            this.dgvPayHistory.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dgvPayHistory.Location = new System.Drawing.Point(453, 292);
+            this.dgvPayHistory.MultiSelect = false;
+            this.dgvPayHistory.Name = "dgvPayHistory";
+            this.dgvPayHistory.ReadOnly = true;
+            this.dgvPayHistory.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
+            this.dgvPayHistory.Size = new System.Drawing.Size(536, 89);
+            this.dgvPayHistory.TabIndex = 31;
+            this.dgvPayHistory.TabStop = false;
+            // 
             // frmEmployee
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.Window;
             this.ClientSize = new System.Drawing.Size(1083, 567);
+            this.Controls.Add(this.dgvPayHistory);
+            this.Controls.Add(this.label10);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.dgvTimeClock);
             this.Controls.Add(this.label9);
@@ -303,6 +333,7 @@
             this.gbEditInfo.ResumeLayout(false);
             this.gbEditInfo.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvTimeClock)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dgvPayHistory)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -332,6 +363,8 @@
         private System.Windows.Forms.DataGridView dgvTimeClock;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Button btnUpdateInfo;
+        private System.Windows.Forms.Label label10;
+        private System.Windows.Forms.DataGridView dgvPayHistory;
 
 
     }

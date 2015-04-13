@@ -54,6 +54,7 @@ namespace TVSHomePage
                 string getUserNameQuery = "select FirstName,LastName from EmployeeData where Password='"+id+"' ";
                 string loadEmpInfoTableQuery = "select FirstName,LastName,StreetAddress,City,State,Zip,Phone from EmployeeData where Password='" + id + "'";
                 string loadTimeClockTableQuery = "select ClockedIn,ClockedOut,HoursWorked,TotalHoursWorked,payedOut from TimeClock where UserPassword='"+id+"'";
+                string loadPayHistory = "select Check_ID,GrossPay,PayDate from PayChecks where userPassword='"+id+"'";
                 
                 //Get user first and last name and greet in title bar
                 command.CommandText = getUserNameQuery;
@@ -73,8 +74,6 @@ namespace TVSHomePage
                 dgvUserInfo.AutoResizeColumns();
                 dgvUserInfo.ClearSelection();
                 dgvUserInfo.CurrentCell = null;
-                
-
 
                 //Fill TimeCard Table
                 command.CommandText = loadTimeClockTableQuery;
@@ -85,6 +84,17 @@ namespace TVSHomePage
                 dgvTimeClock.AutoResizeColumns();
                 dgvTimeClock.ClearSelection();
                 dgvTimeClock.CurrentCell = null;
+
+                //Fill PayHistory Table
+                command.CommandText = loadPayHistory;
+                OleDbDataAdapter daPayHistory = new OleDbDataAdapter(command);
+                DataTable dtPayHistory = new DataTable();
+                daPayHistory.Fill(dtPayHistory);
+                dgvPayHistory.DataSource = dtPayHistory;
+                dgvPayHistory.AutoResizeColumns();
+                dgvPayHistory.ClearSelection();
+                dgvPayHistory.CurrentCell = null;
+
                 
                 
                 //close db connection

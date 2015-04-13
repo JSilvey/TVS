@@ -286,11 +286,11 @@ namespace TVSHomePage
             {
                 connection.Open();
 
-                //Populate dictionary from PayCheck Table
+                //Populate dictionary from PayPeriod Table
                 OleDbCommand command = new OleDbCommand();
                 command.Connection = connection;
-                string readPayCheckTable = "select UserPassword,TotalHours from PayCheck";
-                command.CommandText = readPayCheckTable;
+                string readPayPeriodTable = "select UserPassword,TotalHours from PayPeriod";
+                command.CommandText = readPayPeriodTable;
                 OleDbDataReader pwReader = command.ExecuteReader();
                 while (pwReader.Read())
                 {
@@ -329,8 +329,15 @@ namespace TVSHomePage
                     string editPayedOut = "update TimeClock set PayedOut='" + "Yes, on " + dt + "' where UserPassword='" + userIDNum.Key + "' and PayedOut='"+payedOut+"'";
                     command.CommandText = editPayedOut;
                     command.ExecuteNonQuery();
-                    string resetTotalHours = "update PayCheck set TotalHours='"+"0:0:0"+"'where UserPassword='"+userIDNum.Key+"'";
+                    string resetTotalHours = "update PayPeriod set TotalHours='"+"0:0:0"+"'where UserPassword='"+userIDNum.Key+"'";
                     command.CommandText = resetTotalHours;
+                    command.ExecuteNonQuery();
+                    connection.Close();
+
+                    //record paycheck amount in PayChecks table
+                    connection.Open();
+                    string recordPaycheck = "insert into PayChecks (userPassword,GrossPay,PayDate) values('" + userIDNum.Key + "','" + grossPay.ToString("C") + "','"+dt+"')";
+                    command.CommandText = recordPaycheck;
                     command.ExecuteNonQuery();
                     connection.Close();
                 }
