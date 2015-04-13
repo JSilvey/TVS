@@ -69,8 +69,11 @@ namespace TVSHomePage
                 DataTable dtEmpInfo = new DataTable();
                 daEmpInfo.Fill(dtEmpInfo);
                 dgvEmployees.DataSource = dtEmpInfo;
+                dgvEmployees.AutoResizeColumns();
+                dgvEmployees.ClearSelection();
+                dgvEmployees.CurrentCell = null;
 
-                //Clear and Fill combobox
+                //Clear and Fill listbox
                 cbEmpID.Items.Clear();
                 string loadEmpComboBox = "select EMP_ID,FirstName,LastName from EmployeeData";
                 command.CommandText = loadEmpComboBox;
@@ -93,7 +96,11 @@ namespace TVSHomePage
                 }
                 clockedInReader.Close();
 
+                //clear combobox and datagridview timetable
                 cbEmpID.SelectedItem = null;
+                cbEmpID.Text = "";
+                dgvTimeTable.DataSource = null;
+                dgvTimeTable.Rows.Clear();
 
                 
                 connection.Close();
@@ -151,8 +158,7 @@ namespace TVSHomePage
                 
                 //employee Id was selected, open form passing the ID number
                 EditEmployeeForm editEmp = new EditEmployeeForm(emp_ID);
-                editEmp.Show();            
-                                
+                editEmp.Show();                                
             }
             
         }
@@ -236,12 +242,15 @@ namespace TVSHomePage
                 pwReader.Close();
 
                 //use the user password to load data into the timecard table
-                string loadTimeCard = "select ClockedIn,ClockedOut,HoursWorked from TimeClock where UserPassword='" +userPassword + "'";
+                string loadTimeCard = "select ClockedIn,ClockedOut,HoursWorked,TotalHoursWorked,payedOut from TimeClock where UserPassword='" +userPassword + "'";
                 command.CommandText = loadTimeCard;
                 OleDbDataAdapter daTimeCard = new OleDbDataAdapter(command);
                 DataTable dtTimeCard = new DataTable();
                 daTimeCard.Fill(dtTimeCard);
                 dgvTimeTable.DataSource = dtTimeCard;
+                dgvTimeTable.AutoResizeColumns();
+                dgvTimeTable.ClearSelection();
+                dgvTimeTable.CurrentCell = null;
 
                 connection.Close();
 
@@ -255,6 +264,45 @@ namespace TVSHomePage
             {
                 connection.Close();
             }
-        }    
+        }
+
+        private void btnPayroll_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                connection.Open();
+
+                //use the combobox to get the user ID and then retrieve user password
+                //the user password is the primary key for the TimeClock table
+                OleDbCommand command = new OleDbCommand();
+                command.Connection = connection;
+                string loadTableQuery = "select UserPassword,TotalHoursWorked from TimeClock where PayedOut='"+"no"+"'";
+                command.CommandText = loadTableQuery;
+               
+                OleDbDataAdapter daTimeCard = new OleDbDataAdapter(command);
+                DataTable dtTimeCard = new DataTable();
+                daTimeCard.Fill(dtTimeCard);
+                dgvPayroll.DataSource = dtTimeCard;
+                dgvPayroll.AutoResizeColumns();
+                dgvPayroll.ClearSelection();
+                dgvPayroll.CurrentCell = null;
+
+                
+                connection.Close();
+
+            }
+            catch (Exception ex)
+            {
+                connection.Close();
+                MessageBox.Show("There was an error!\n" + ex.Message, "OOPS!", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+            finally
+            {
+                connection.Close();
+            }
+        }
+
+          
+      
     }
 }

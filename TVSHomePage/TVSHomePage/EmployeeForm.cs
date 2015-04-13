@@ -53,7 +53,7 @@ namespace TVSHomePage
                 command.Connection = connection;
                 string getUserNameQuery = "select FirstName,LastName from EmployeeData where Password='"+id+"' ";
                 string loadEmpInfoTableQuery = "select FirstName,LastName,StreetAddress,City,State,Zip,Phone from EmployeeData where Password='" + id + "'";
-                string loadTimeClockTableQuery = "select ClockedIn,ClockedOut,HoursWorked from TimeClock where UserPassword='"+id+"'";
+                string loadTimeClockTableQuery = "select ClockedIn,ClockedOut,HoursWorked,TotalHoursWorked,payedOut from TimeClock where UserPassword='"+id+"'";
                 
                 //Get user first and last name and greet in title bar
                 command.CommandText = getUserNameQuery;
@@ -106,6 +106,7 @@ namespace TVSHomePage
             DateTime dt = DateTime.Now;
             String clockID = null;
             String clockIn = "true";
+            string payedOut = "no";
 
             try
             {
@@ -113,7 +114,7 @@ namespace TVSHomePage
                 connection.Open();
 
                 //list of commands for database
-                string clockInCommand = "insert into TimeClock (UserPassword,ClockedIn) values('" + id + "','" + dt + "') ";
+                string clockInCommand = "insert into TimeClock (UserPassword,ClockedIn,payedOut) values('" + id + "','" + dt + "','"+payedOut+"') ";
                 string setClockedInCommand = "update EmployeeData set isClockedIn='" + clockIn + "' where Password='" + id + "'";
                 string isClockedInQuery = "select isClockedIn from EmployeeData where Password='" + id + "' ";
                 string nameQuery = "select FirstName, LastName from EmployeeData where Password='" + id + "'";
@@ -243,6 +244,7 @@ set StreetAddress='" + txtStreet.Text + "', City='" + txtCity.Text + "', State='
             String clockOut = "false";
             String clockID = "";
             String nullClockID = "";
+            string payedOut = "no";
 
             try
             {
@@ -293,7 +295,7 @@ set StreetAddress='" + txtStreet.Text + "', City='" + txtCity.Text + "', State='
                         long longClockID = Convert.ToInt64(clockID);
 
                         //clockout command 
-                        string clockOutCommand = "update TimeClock set ClockedOut='" + dt + "' where Clock_ID=" + longClockID + "";
+                        string clockOutCommand = "update TimeClock set ClockedOut='" + dt + "',payedOut='"+payedOut+"' where Clock_ID=" + longClockID + "";
 
                         //timestamp user's clockout time and date in database
                         command.CommandText = clockOutCommand;
@@ -314,7 +316,7 @@ set StreetAddress='" + txtStreet.Text + "', City='" + txtCity.Text + "', State='
                         tcf.CalcHoursWorked(id, longClockID);
 
                         //Show clock in Confirmation Message Box
-                        MessageBox.Show(userName + " clocked out at:\n" + dt, "Clock In Confirmation");
+                        MessageBox.Show(userName + " clocked out at:\n" + dt, "Clock Out Confirmation");
 
                     }
                     

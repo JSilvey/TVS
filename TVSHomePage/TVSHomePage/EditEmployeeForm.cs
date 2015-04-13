@@ -112,8 +112,8 @@ namespace TVSHomePage
             //Create a new time object
             DateTime dt = DateTime.Now;
             String clockID= null;
-            String clockIn = "true";           
-            
+            String clockIn = "true";
+            string payedOut = "no";
             string userPassword = txtPassword.Text;
                 
                 
@@ -123,7 +123,7 @@ namespace TVSHomePage
                     connection.Open();
 
                     //list of commands for database
-                    string clockInCommand = "insert into TimeClock (UserPassword,ClockedIn) values('" + userPassword + "','" + dt + "') ";
+                    string clockInCommand = "insert into TimeClock (UserPassword,ClockedIn,PayedOut) values('" + userPassword + "','" + dt + "','"+payedOut+"') ";
                     string setClockedInCommand = "update EmployeeData set isClockedIn='"+clockIn+"' where Password='"+userPassword+"'";
                     string isClockedInQuery = "select isClockedIn from EmployeeData where Password='"+userPassword+"' ";
                     string nameQuery = "select FirstName, LastName from EmployeeData where Password='" + userPassword + "'";
@@ -209,6 +209,7 @@ namespace TVSHomePage
             String clockOut = "false";
             String clockID = "";
             String nullClockID = "";
+            string payedOut = "no";
 
             try
             {
@@ -259,7 +260,7 @@ namespace TVSHomePage
                     long longClockID = Convert.ToInt64(clockID);
 
                     //clockout command 
-                    string clockOutCommand = "update TimeClock set ClockedOut='" + dt + "' where Clock_ID=" + longClockID + "";
+                    string clockOutCommand = "update TimeClock set ClockedOut='" + dt + "',PayedOut='"+payedOut+"' where Clock_ID=" + longClockID + "";
 
                     //timestamp user's clockout time and date in database
                     command.CommandText = clockOutCommand;

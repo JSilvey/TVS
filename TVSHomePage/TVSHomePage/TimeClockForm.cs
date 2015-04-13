@@ -60,6 +60,7 @@ namespace TVSHomePage
             DateTime dt = DateTime.Now;
             String clockID= null;
             String clockIn = "true";
+            String payedOut = "no";
             
             
             
@@ -79,7 +80,7 @@ namespace TVSHomePage
                     connection.Open();
 
                     //list of commands for database
-                    string clockInCommand = "insert into TimeClock (UserPassword,ClockedIn) values('" + userPassword + "','" + dt + "') ";
+                    string clockInCommand = "insert into TimeClock (UserPassword,ClockedIn,payedOut) values('" + userPassword + "','" + dt + "','"+payedOut+"') ";
                     string setClockedInCommand = "update EmployeeData set isClockedIn='"+clockIn+"' where Password='"+userPassword+"'";
                     string isClockedInQuery = "select isClockedIn from EmployeeData where Password='"+userPassword+"' ";
                     string nameQuery = "select FirstName, LastName from EmployeeData where Password='" + userPassword + "'";
@@ -168,6 +169,7 @@ namespace TVSHomePage
             String clockOut = "false";
             String clockID = "";
             String nullClockID = "";
+            String payedOut = "no";
 
             if (mtbEmployeeID.Text.Equals(""))
             {
@@ -227,7 +229,7 @@ namespace TVSHomePage
                         long longClockID = Convert.ToInt64(clockID);
                         
                         //clockout command 
-                        string clockOutCommand = "update TimeClock set ClockedOut='"+dt+"' where Clock_ID="+longClockID+"";
+                        string clockOutCommand = "update TimeClock set ClockedOut='"+dt+"',payedOut='"+payedOut+"' where Clock_ID="+longClockID+"";
                         
                         //timestamp user's clockout time and date in database
                         command.CommandText = clockOutCommand;
@@ -305,18 +307,38 @@ namespace TVSHomePage
                 TimeSpan workHours = (clockOut.Subtract(clockIn));
                 int hours = workHours.Hours;
                 int minutes = ((workHours.Minutes) % 60);
-                string timeWorked = hours.ToString() + " hours, " + minutes.ToString() + " minutes";
+                int seconds = ((workHours.Seconds) % 60);
+                string timeWorked = hours.ToString() + ":" + minutes.ToString() + ":"+seconds.ToString();
 
                 string setHoursWorked = "update TimeClock set HoursWorked='" + timeWorked + "' where Clock_ID=" + clockID + "";
+                
                 command.CommandText = setHoursWorked;
+                command.ExecuteNonQuery();
 
+                //calculate total hours worked
+                string no = "no";
+                string getHoursWorkedQuery = "select HoursWorked from TimeClock where UserPassword='"+userId+"' and payedOut='"+no+"'";
+                string results= null;                
+                //retrieve hours from HoursWorked column that have not been paid out via a paycheck
+                command.CommandText = getHoursWorkedQuery;
+                OleDbDataReader getHoursReader = command.ExecuteReader();
+                while (getHoursReader.Read())
+                {
+                    results += (getHoursReader["HoursWorked"].ToString()) + ':';
+                }
+                getHoursReader.Close();
+                string totalHours=(TotalHours(results));
+
+                //write totalhours to database
+                string writeTotalHours = "update TimeClock set TotalHoursWorked='"+totalHours+"' where Clock_ID="+clockID+"";
+                command.CommandText = writeTotalHours;
                 command.ExecuteNonQuery();
                 connection.Close();
             }
             catch (Exception ex)
             {
                 connection.Close();
-                MessageBox.Show("An error has occured!" + ex.Message, "OOPS!", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                MessageBox.Show("An error has occured!" + ex, "OOPS!", MessageBoxButtons.OK, MessageBoxIcon.Information);
             }
             finally
             {
@@ -324,6 +346,74 @@ namespace TVSHomePage
             }
 
 
+        }
+        public string TotalHours(String results)
+        {
+            //split the results array into an array that holds each hour, minute, and second
+            char[] delimiters = new char[] { ' ', ':' };
+            string[] times = results.Split(delimiters);
+
+            //split the times array into individual arrays
+            int[] hr = new int[(times.Length - 1) / 3];
+            int[] min = new int[(times.Length - 1) / 3];
+            int[] sec = new int[(times.Length) - 1 / 3];
+
+
+            //populate hr array
+            for (int i = 0, j = 0; i < times.Length - 1; i += 3, j++)
+            {
+                hr[j] = Convert.ToInt32(times[i]);
+
+            }
+
+            //populate min array
+            for (int i = 1, j = 0; i < times.Length - 1; i += 3, j++)
+            {
+                min[j] = Convert.ToInt32(times[i]);
+
+            }
+            //populate sec array
+            for (int i = 2, j = 0; i < times.Length; i += 3, j++)
+            {
+                sec[j] = Convert.ToInt32(times[i]);
+
+            }
+
+
+            //Sum the arrays individually
+            int hrSum = 0;
+            int minSum = 0;
+            int secSum = 0;
+            string totalHours = "";
+
+            for (int i = 0; i < hr.Length; i++)
+            {
+                hrSum += hr[i];
+            }
+            for (int i = 0; i < hr.Length; i++)
+            {
+                minSum += min[i];
+            }
+            for (int i = 0; i < hr.Length; i++)
+            {
+                secSum += sec[i];
+            }
+            
+            // if seconds is > 60 add minutes to minSum and set secSum to remainder
+            if (secSum > 60)
+            {
+                minSum += (secSum / 60);
+                secSum = (secSum % 60);
+            }
+            //if minutes is > 60 add hours to hrSum and set minSum to remainder
+            if (minSum>60)
+            {
+                hrSum += (minSum / 60);
+                minSum = (minSum % 60);
+            }
+
+            totalHours = (hrSum.ToString() + ":" + minSum.ToString() + ":" + secSum.ToString());
+            return totalHours;
         }
     }
 }

@@ -69,12 +69,12 @@
             this.dgvUserInfo.AllowUserToAddRows = false;
             this.dgvUserInfo.AllowUserToDeleteRows = false;
             this.dgvUserInfo.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dgvUserInfo.Location = new System.Drawing.Point(77, 41);
+            this.dgvUserInfo.Location = new System.Drawing.Point(97, 48);
             this.dgvUserInfo.MultiSelect = false;
             this.dgvUserInfo.Name = "dgvUserInfo";
             this.dgvUserInfo.ReadOnly = true;
             this.dgvUserInfo.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dgvUserInfo.Size = new System.Drawing.Size(809, 44);
+            this.dgvUserInfo.Size = new System.Drawing.Size(892, 44);
             this.dgvUserInfo.TabIndex = 14;
             this.dgvUserInfo.TabStop = false;
             // 
@@ -104,9 +104,9 @@
             this.groupBox1.Controls.Add(this.btnClockOut);
             this.groupBox1.Controls.Add(this.btnClockIn);
             this.groupBox1.Controls.Add(this.btnLogout);
-            this.groupBox1.Location = new System.Drawing.Point(77, 400);
+            this.groupBox1.Location = new System.Drawing.Point(97, 407);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(809, 131);
+            this.groupBox1.Size = new System.Drawing.Size(892, 131);
             this.groupBox1.TabIndex = 18;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "User Options";
@@ -114,7 +114,7 @@
             // btnClockOut
             // 
             this.btnClockOut.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnClockOut.Location = new System.Drawing.Point(310, 42);
+            this.btnClockOut.Location = new System.Drawing.Point(352, 42);
             this.btnClockOut.Name = "btnClockOut";
             this.btnClockOut.Size = new System.Drawing.Size(188, 47);
             this.btnClockOut.TabIndex = 1;
@@ -125,7 +125,7 @@
             // btnClockIn
             // 
             this.btnClockIn.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnClockIn.Location = new System.Drawing.Point(74, 42);
+            this.btnClockIn.Location = new System.Drawing.Point(116, 42);
             this.btnClockIn.Name = "btnClockIn";
             this.btnClockIn.Size = new System.Drawing.Size(188, 47);
             this.btnClockIn.TabIndex = 0;
@@ -136,7 +136,7 @@
             // btnLogout
             // 
             this.btnLogout.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnLogout.Location = new System.Drawing.Point(546, 42);
+            this.btnLogout.Location = new System.Drawing.Point(588, 42);
             this.btnLogout.Name = "btnLogout";
             this.btnLogout.Size = new System.Drawing.Size(188, 47);
             this.btnLogout.TabIndex = 2;
@@ -217,7 +217,7 @@
             this.gbEditInfo.Controls.Add(this.label3);
             this.gbEditInfo.Controls.Add(this.label5);
             this.gbEditInfo.Controls.Add(this.label4);
-            this.gbEditInfo.Location = new System.Drawing.Point(77, 92);
+            this.gbEditInfo.Location = new System.Drawing.Point(97, 99);
             this.gbEditInfo.Name = "gbEditInfo";
             this.gbEditInfo.Size = new System.Drawing.Size(331, 282);
             this.gbEditInfo.TabIndex = 26;
@@ -238,7 +238,7 @@
             // 
             this.label9.AutoSize = true;
             this.label9.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label9.Location = new System.Drawing.Point(74, 21);
+            this.label9.Location = new System.Drawing.Point(94, 28);
             this.label9.Name = "label9";
             this.label9.Size = new System.Drawing.Size(141, 16);
             this.label9.TabIndex = 27;
@@ -249,12 +249,12 @@
             this.dgvTimeClock.AllowUserToAddRows = false;
             this.dgvTimeClock.AllowUserToDeleteRows = false;
             this.dgvTimeClock.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dgvTimeClock.Location = new System.Drawing.Point(433, 112);
+            this.dgvTimeClock.Location = new System.Drawing.Point(453, 119);
             this.dgvTimeClock.MultiSelect = false;
             this.dgvTimeClock.Name = "dgvTimeClock";
             this.dgvTimeClock.ReadOnly = true;
             this.dgvTimeClock.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dgvTimeClock.Size = new System.Drawing.Size(453, 262);
+            this.dgvTimeClock.Size = new System.Drawing.Size(536, 262);
             this.dgvTimeClock.TabIndex = 28;
             this.dgvTimeClock.TabStop = false;
             // 
@@ -262,7 +262,7 @@
             // 
             this.label1.AutoSize = true;
             this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label1.Location = new System.Drawing.Point(430, 92);
+            this.label1.Location = new System.Drawing.Point(450, 99);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(101, 16);
             this.label1.TabIndex = 29;
@@ -284,7 +284,7 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.Window;
-            this.ClientSize = new System.Drawing.Size(960, 567);
+            this.ClientSize = new System.Drawing.Size(1083, 567);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.dgvTimeClock);
             this.Controls.Add(this.label9);
