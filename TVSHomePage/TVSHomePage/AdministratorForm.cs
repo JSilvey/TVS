@@ -167,6 +167,7 @@ namespace TVSHomePage
 
         private void btnDelete_Click(object sender, EventArgs e)
         {
+            
             connection.Close();
             //check to make sure the user has chosen an employee ID
             if (cbEmpID.Text == "")
@@ -182,73 +183,79 @@ namespace TVSHomePage
                 string text = cbEmpID.Text;
                 string[] words = text.Split(delimiter);
                 string emp_ID = words[0];
-                string empName= (words[1]+" "+words[2]);
-                string userPassword="";
-                               
-                
-                //valid ID was selected
-                try
-                {
-                    //get user password from emp_ID number
-                    connection.Open();
-                    string getPassword = "select [Password] from EmployeeData where EMP_ID="+emp_ID+"";
-                    OleDbCommand command = new OleDbCommand();
-                    command.Connection = connection;
-                    command.CommandText = getPassword;
-                    OleDbDataReader drGetPassword = command.ExecuteReader();
-                    drGetPassword.Read();
-                    userPassword = drGetPassword["Password"].ToString();
-                    connection.Close();
-                    
-                    //delete from TimeClock table
-                    connection.Open();                    
-                    string deleteTimeClockEntry= "delete from TimeClock where [UserPassword]='" + userPassword + "'";
-                    command.CommandText = deleteTimeClockEntry;
-                    command.ExecuteNonQuery();                    
-                    connection.Close();
-                   
-                    //delete from PayPeriod Table                    
-                    connection.Open();                    
-                    command.Connection = connection;
-                    string deletePayPeriodEntry = "delete from PayPeriod where [UserPassword]='" + userPassword + "'";
-                    command.CommandText = deletePayPeriodEntry;
-                    command.ExecuteNonQuery();                    
-                    connection.Close();
+                string empName = (words[1] + " " + words[2]);
+                string userPassword = "";
 
-                    //delete from PayChecks Table                    
-                    connection.Open();
-                    command.Connection = connection;
-                    string deletePayChecksEntry = "delete from PayChecks where [userPassword]='" + userPassword + "'";
-                    command.CommandText = deletePayChecksEntry;
-                    command.ExecuteNonQuery();
-                    connection.Close();
-                    
-                    //delete from EmployeeData Table
-                    connection.Open();                    
-                    command.Connection = connection;
-                    string deleteEmployeeQuery = "delete from EmployeeData where [EMP_ID]=" + emp_ID + "";
-                    command.CommandText = deleteEmployeeQuery;
-                    command.ExecuteNonQuery();
-                    MessageBox.Show(empName+"'s Record Deleted! ", "Success!", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                    connection.Close();
-
-                    //clear Combo box entry
-                    cbEmpID.Text = null;
-                    cbEmpID.SelectedItem = null;
-
-                    //reload table data
-                    LoadData();
-                }
-                catch (Exception ex)
+                DialogResult dialog = MessageBox.Show("Do you really want to delete " + empName + " from database?", "WARNING!", MessageBoxButtons.YesNo, MessageBoxIcon.Warning);
+                if (dialog == DialogResult.Yes)
                 {
-                    connection.Close();
-                    MessageBox.Show("There was an error!\n" + ex.Message, "OOPS!", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                }
-                finally
-                {
-                    connection.Close();
+
+
+                    //valid ID was selected
+                    try
+                    {
+                        //get user password from emp_ID number
+                        connection.Open();
+                        string getPassword = "select [Password] from EmployeeData where EMP_ID=" + emp_ID + "";
+                        OleDbCommand command = new OleDbCommand();
+                        command.Connection = connection;
+                        command.CommandText = getPassword;
+                        OleDbDataReader drGetPassword = command.ExecuteReader();
+                        drGetPassword.Read();
+                        userPassword = drGetPassword["Password"].ToString();
+                        connection.Close();
+
+                        //delete from TimeClock table
+                        connection.Open();
+                        string deleteTimeClockEntry = "delete from TimeClock where [UserPassword]='" + userPassword + "'";
+                        command.CommandText = deleteTimeClockEntry;
+                        command.ExecuteNonQuery();
+                        connection.Close();
+
+                        //delete from PayPeriod Table                    
+                        connection.Open();
+                        command.Connection = connection;
+                        string deletePayPeriodEntry = "delete from PayPeriod where [UserPassword]='" + userPassword + "'";
+                        command.CommandText = deletePayPeriodEntry;
+                        command.ExecuteNonQuery();
+                        connection.Close();
+
+                        //delete from PayChecks Table                    
+                        connection.Open();
+                        command.Connection = connection;
+                        string deletePayChecksEntry = "delete from PayChecks where [userPassword]='" + userPassword + "'";
+                        command.CommandText = deletePayChecksEntry;
+                        command.ExecuteNonQuery();
+                        connection.Close();
+
+                        //delete from EmployeeData Table
+                        connection.Open();
+                        command.Connection = connection;
+                        string deleteEmployeeQuery = "delete from EmployeeData where [EMP_ID]=" + emp_ID + "";
+                        command.CommandText = deleteEmployeeQuery;
+                        command.ExecuteNonQuery();
+                        MessageBox.Show(empName + "'s Record Deleted! ", "Success!", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                        connection.Close();
+
+                        //clear Combo box entry
+                        cbEmpID.Text = null;
+                        cbEmpID.SelectedItem = null;
+
+                        //reload table data
+                        LoadData();
+                    }
+                    catch (Exception ex)
+                    {
+                        connection.Close();
+                        MessageBox.Show("There was an error!\n" + ex.Message, "OOPS!", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    }
+                    finally
+                    {
+                        connection.Close();
+                    }
                 }
             }
+            
         }
 
         private void cbEmpID_SelectedIndexChanged(object sender, EventArgs e)

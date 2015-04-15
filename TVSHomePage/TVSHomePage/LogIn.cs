@@ -77,17 +77,15 @@ namespace TVSHomePage
                             
                             frmEmployee empForm = new frmEmployee(txtPassword.Text);
                             empForm.Show();
-
                             //close login window
-                            this.Close();
+                            this.Close();                            
                         }
                         else //must be admin, show admin form
                         {
                             AdministratorForm adminForm = new AdministratorForm(txtPassword.Text);
                             adminForm.Show();
-
                             //close login window
-                            this.Close();
+                            this.Close();                            
                         }                        
                     }
                     //close roleReader
@@ -103,6 +101,7 @@ namespace TVSHomePage
                 }
                 //close database connection
                 connection.Close();
+                
             }
             catch (Exception ex)
             {
