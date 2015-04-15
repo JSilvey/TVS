@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(EditEmployeeForm));
             this.label15 = new System.Windows.Forms.Label();
             this.label14 = new System.Windows.Forms.Label();
             this.txtRole = new System.Windows.Forms.TextBox();
@@ -60,6 +61,8 @@
             this.txtFirstName = new System.Windows.Forms.TextBox();
             this.btnClockIn = new System.Windows.Forms.Button();
             this.btnClockOut = new System.Windows.Forms.Button();
+            this.pictureBox1 = new System.Windows.Forms.PictureBox();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.SuspendLayout();
             // 
             // label15
@@ -222,22 +225,28 @@
             // btnClose
             // 
             this.btnClose.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnClose.Image = global::TVSHomePage.Properties.Resources.Close_2_icon;
             this.btnClose.Location = new System.Drawing.Point(501, 593);
             this.btnClose.Name = "btnClose";
             this.btnClose.Size = new System.Drawing.Size(204, 47);
             this.btnClose.TabIndex = 48;
             this.btnClose.Text = "Close";
+            this.btnClose.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.btnClose.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
             this.btnClose.UseVisualStyleBackColor = true;
             this.btnClose.Click += new System.EventHandler(this.btnClose_Click);
             // 
             // btnEditEmp
             // 
             this.btnEditEmp.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnEditEmp.Image = global::TVSHomePage.Properties.Resources.Actions_document_edit_icon;
             this.btnEditEmp.Location = new System.Drawing.Point(501, 516);
             this.btnEditEmp.Name = "btnEditEmp";
             this.btnEditEmp.Size = new System.Drawing.Size(204, 47);
             this.btnEditEmp.TabIndex = 47;
             this.btnEditEmp.Text = "Update  Employee";
+            this.btnEditEmp.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.btnEditEmp.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
             this.btnEditEmp.UseVisualStyleBackColor = true;
             this.btnEditEmp.Click += new System.EventHandler(this.btnEditEmp_Click);
             // 
@@ -340,30 +349,47 @@
             // btnClockIn
             // 
             this.btnClockIn.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnClockIn.Image = global::TVSHomePage.Properties.Resources.door_in_icon;
             this.btnClockIn.Location = new System.Drawing.Point(261, 516);
             this.btnClockIn.Name = "btnClockIn";
             this.btnClockIn.Size = new System.Drawing.Size(204, 47);
             this.btnClockIn.TabIndex = 64;
-            this.btnClockIn.Text = "Clock Employee In";
+            this.btnClockIn.Text = "Clock In";
+            this.btnClockIn.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.btnClockIn.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
             this.btnClockIn.UseVisualStyleBackColor = true;
             this.btnClockIn.Click += new System.EventHandler(this.btnClockIn_Click);
             // 
             // btnClockOut
             // 
             this.btnClockOut.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnClockOut.Image = global::TVSHomePage.Properties.Resources.door_out_icon;
             this.btnClockOut.Location = new System.Drawing.Point(261, 593);
             this.btnClockOut.Name = "btnClockOut";
             this.btnClockOut.Size = new System.Drawing.Size(204, 47);
             this.btnClockOut.TabIndex = 65;
-            this.btnClockOut.Text = "Clock Employee Out";
+            this.btnClockOut.Text = "Clock Out";
+            this.btnClockOut.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.btnClockOut.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
             this.btnClockOut.UseVisualStyleBackColor = true;
             this.btnClockOut.Click += new System.EventHandler(this.btnClockOut_Click);
+            // 
+            // pictureBox1
+            // 
+            this.pictureBox1.Image = global::TVSHomePage.Properties.Resources.Administrator_icon;
+            this.pictureBox1.Location = new System.Drawing.Point(9, 193);
+            this.pictureBox1.Name = "pictureBox1";
+            this.pictureBox1.Size = new System.Drawing.Size(256, 256);
+            this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.AutoSize;
+            this.pictureBox1.TabIndex = 66;
+            this.pictureBox1.TabStop = false;
             // 
             // EditEmployeeForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(946, 731);
+            this.Controls.Add(this.pictureBox1);
             this.Controls.Add(this.btnClockOut);
             this.Controls.Add(this.btnClockIn);
             this.Controls.Add(this.label15);
@@ -396,9 +422,11 @@
             this.Controls.Add(this.txtStreetAddress);
             this.Controls.Add(this.txtLastName);
             this.Controls.Add(this.txtFirstName);
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "EditEmployeeForm";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "EditEmployeeForm";
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -438,5 +466,6 @@
         private System.Windows.Forms.TextBox txtFirstName;
         private System.Windows.Forms.Button btnClockIn;
         private System.Windows.Forms.Button btnClockOut;
+        private System.Windows.Forms.PictureBox pictureBox1;
     }
 }

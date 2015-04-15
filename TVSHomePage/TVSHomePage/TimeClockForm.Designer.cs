@@ -29,17 +29,20 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(TimeClockForm));
             this.label1 = new System.Windows.Forms.Label();
             this.btnClockIn = new System.Windows.Forms.Button();
             this.btnClockOut = new System.Windows.Forms.Button();
             this.tmrTimeClock = new System.Windows.Forms.Timer(this.components);
             this.lblDate = new System.Windows.Forms.Label();
-            this.btnClose = new System.Windows.Forms.Button();
             this.lblTime = new System.Windows.Forms.Label();
             this.lblDay = new System.Windows.Forms.Label();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.txtEmployeeID = new System.Windows.Forms.TextBox();
+            this.pictureBox1 = new System.Windows.Forms.PictureBox();
+            this.btnClose = new System.Windows.Forms.Button();
             this.groupBox1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.SuspendLayout();
             // 
             // label1
@@ -47,7 +50,7 @@
             this.label1.AutoSize = true;
             this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label1.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
-            this.label1.Location = new System.Drawing.Point(88, 183);
+            this.label1.Location = new System.Drawing.Point(88, 304);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(123, 24);
             this.label1.TabIndex = 7;
@@ -57,22 +60,28 @@
             // btnClockIn
             // 
             this.btnClockIn.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnClockIn.Location = new System.Drawing.Point(39, 240);
+            this.btnClockIn.Image = global::TVSHomePage.Properties.Resources.door_in_icon;
+            this.btnClockIn.Location = new System.Drawing.Point(39, 361);
             this.btnClockIn.Name = "btnClockIn";
             this.btnClockIn.Size = new System.Drawing.Size(136, 49);
             this.btnClockIn.TabIndex = 5;
             this.btnClockIn.Text = "Clock In";
+            this.btnClockIn.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.btnClockIn.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
             this.btnClockIn.UseVisualStyleBackColor = true;
             this.btnClockIn.Click += new System.EventHandler(this.btnClockIn_Click);
             // 
             // btnClockOut
             // 
             this.btnClockOut.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnClockOut.Location = new System.Drawing.Point(207, 240);
+            this.btnClockOut.Image = global::TVSHomePage.Properties.Resources.door_out_icon;
+            this.btnClockOut.Location = new System.Drawing.Point(207, 361);
             this.btnClockOut.Name = "btnClockOut";
             this.btnClockOut.Size = new System.Drawing.Size(136, 49);
             this.btnClockOut.TabIndex = 6;
             this.btnClockOut.Text = "Clock Out";
+            this.btnClockOut.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.btnClockOut.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
             this.btnClockOut.UseVisualStyleBackColor = true;
             this.btnClockOut.Click += new System.EventHandler(this.btnClockOut_Click);
             // 
@@ -93,17 +102,6 @@
             this.lblDate.Text = "mmm/dd/yyyy";
             this.lblDate.TextAlign = System.Drawing.ContentAlignment.TopCenter;
             this.lblDate.Visible = false;
-            // 
-            // btnClose
-            // 
-            this.btnClose.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnClose.Location = new System.Drawing.Point(39, 309);
-            this.btnClose.Name = "btnClose";
-            this.btnClose.Size = new System.Drawing.Size(304, 47);
-            this.btnClose.TabIndex = 10;
-            this.btnClose.Text = "Exit";
-            this.btnClose.UseVisualStyleBackColor = true;
-            this.btnClose.Click += new System.EventHandler(this.btnClose_Click);
             // 
             // lblTime
             // 
@@ -136,7 +134,7 @@
             this.groupBox1.Controls.Add(this.lblDay);
             this.groupBox1.Controls.Add(this.lblDate);
             this.groupBox1.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.groupBox1.Location = new System.Drawing.Point(39, 18);
+            this.groupBox1.Location = new System.Drawing.Point(39, 19);
             this.groupBox1.Name = "groupBox1";
             this.groupBox1.Size = new System.Drawing.Size(304, 135);
             this.groupBox1.TabIndex = 13;
@@ -146,12 +144,36 @@
             // txtEmployeeID
             // 
             this.txtEmployeeID.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtEmployeeID.Location = new System.Drawing.Point(217, 180);
+            this.txtEmployeeID.Location = new System.Drawing.Point(217, 301);
             this.txtEmployeeID.MaxLength = 4;
             this.txtEmployeeID.Name = "txtEmployeeID";
             this.txtEmployeeID.PasswordChar = '*';
             this.txtEmployeeID.Size = new System.Drawing.Size(77, 29);
             this.txtEmployeeID.TabIndex = 0;
+            // 
+            // pictureBox1
+            // 
+            this.pictureBox1.Image = global::TVSHomePage.Properties.Resources.Clock_icon1;
+            this.pictureBox1.Location = new System.Drawing.Point(127, 156);
+            this.pictureBox1.Name = "pictureBox1";
+            this.pictureBox1.Size = new System.Drawing.Size(128, 128);
+            this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.AutoSize;
+            this.pictureBox1.TabIndex = 14;
+            this.pictureBox1.TabStop = false;
+            // 
+            // btnClose
+            // 
+            this.btnClose.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnClose.Image = global::TVSHomePage.Properties.Resources.Close_2_icon;
+            this.btnClose.Location = new System.Drawing.Point(39, 430);
+            this.btnClose.Name = "btnClose";
+            this.btnClose.Size = new System.Drawing.Size(304, 47);
+            this.btnClose.TabIndex = 10;
+            this.btnClose.Text = "Exit";
+            this.btnClose.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.btnClose.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
+            this.btnClose.UseVisualStyleBackColor = true;
+            this.btnClose.Click += new System.EventHandler(this.btnClose_Click);
             // 
             // TimeClockForm
             // 
@@ -159,19 +181,22 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
             this.BackColor = System.Drawing.SystemColors.Window;
-            this.ClientSize = new System.Drawing.Size(382, 388);
+            this.ClientSize = new System.Drawing.Size(382, 497);
+            this.Controls.Add(this.pictureBox1);
             this.Controls.Add(this.txtEmployeeID);
             this.Controls.Add(this.groupBox1);
             this.Controls.Add(this.btnClose);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.btnClockIn);
             this.Controls.Add(this.btnClockOut);
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.MaximizeBox = false;
             this.Name = "TimeClockForm";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Time Clock";
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -189,5 +214,6 @@
         private System.Windows.Forms.Label lblDay;
         private System.Windows.Forms.GroupBox groupBox1;
         private System.Windows.Forms.TextBox txtEmployeeID;
+        private System.Windows.Forms.PictureBox pictureBox1;
     }
 }

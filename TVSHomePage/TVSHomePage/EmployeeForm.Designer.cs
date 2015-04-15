@@ -29,13 +29,10 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmEmployee));
             this.tmrEmployee = new System.Windows.Forms.Timer(this.components);
             this.label2 = new System.Windows.Forms.Label();
             this.dgvUserInfo = new System.Windows.Forms.DataGridView();
-            this.btnLogout = new System.Windows.Forms.Button();
-            this.btnClockIn = new System.Windows.Forms.Button();
-            this.btnClockOut = new System.Windows.Forms.Button();
-            this.btnRefresh = new System.Windows.Forms.Button();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.label4 = new System.Windows.Forms.Label();
             this.label5 = new System.Windows.Forms.Label();
@@ -60,6 +57,10 @@
             this.lblDay = new System.Windows.Forms.Label();
             this.lblDate = new System.Windows.Forms.Label();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
+            this.btnRefresh = new System.Windows.Forms.Button();
+            this.btnClockOut = new System.Windows.Forms.Button();
+            this.btnClockIn = new System.Windows.Forms.Button();
+            this.btnLogout = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.dgvUserInfo)).BeginInit();
             this.groupBox1.SuspendLayout();
             this.gbEditInfo.SuspendLayout();
@@ -94,50 +95,6 @@
             this.dgvUserInfo.Size = new System.Drawing.Size(601, 44);
             this.dgvUserInfo.TabIndex = 14;
             this.dgvUserInfo.TabStop = false;
-            // 
-            // btnLogout
-            // 
-            this.btnLogout.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnLogout.Location = new System.Drawing.Point(473, 42);
-            this.btnLogout.Name = "btnLogout";
-            this.btnLogout.Size = new System.Drawing.Size(188, 47);
-            this.btnLogout.TabIndex = 2;
-            this.btnLogout.Text = "Logout";
-            this.btnLogout.UseVisualStyleBackColor = true;
-            this.btnLogout.Click += new System.EventHandler(this.btnLogout_Click);
-            // 
-            // btnClockIn
-            // 
-            this.btnClockIn.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnClockIn.Location = new System.Drawing.Point(39, 42);
-            this.btnClockIn.Name = "btnClockIn";
-            this.btnClockIn.Size = new System.Drawing.Size(188, 47);
-            this.btnClockIn.TabIndex = 0;
-            this.btnClockIn.Text = "Clock In";
-            this.btnClockIn.UseVisualStyleBackColor = true;
-            this.btnClockIn.Click += new System.EventHandler(this.btnClockIn_Click);
-            // 
-            // btnClockOut
-            // 
-            this.btnClockOut.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnClockOut.Location = new System.Drawing.Point(256, 42);
-            this.btnClockOut.Name = "btnClockOut";
-            this.btnClockOut.Size = new System.Drawing.Size(188, 47);
-            this.btnClockOut.TabIndex = 1;
-            this.btnClockOut.Text = "Clock Out";
-            this.btnClockOut.UseVisualStyleBackColor = true;
-            this.btnClockOut.Click += new System.EventHandler(this.btnClockOut_Click);
-            // 
-            // btnRefresh
-            // 
-            this.btnRefresh.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnRefresh.Location = new System.Drawing.Point(690, 42);
-            this.btnRefresh.Name = "btnRefresh";
-            this.btnRefresh.Size = new System.Drawing.Size(188, 47);
-            this.btnRefresh.TabIndex = 3;
-            this.btnRefresh.Text = "Refresh Data";
-            this.btnRefresh.UseVisualStyleBackColor = true;
-            this.btnRefresh.Click += new System.EventHandler(this.btnRefresh_Click);
             // 
             // groupBox1
             // 
@@ -245,11 +202,14 @@
             // btnUpdateInfo
             // 
             this.btnUpdateInfo.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnUpdateInfo.Image = global::TVSHomePage.Properties.Resources.Actions_document_edit_icon;
             this.btnUpdateInfo.Location = new System.Drawing.Point(58, 248);
             this.btnUpdateInfo.Name = "btnUpdateInfo";
             this.btnUpdateInfo.Size = new System.Drawing.Size(188, 47);
             this.btnUpdateInfo.TabIndex = 8;
             this.btnUpdateInfo.Text = "Update Info";
+            this.btnUpdateInfo.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.btnUpdateInfo.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
             this.btnUpdateInfo.UseVisualStyleBackColor = true;
             this.btnUpdateInfo.Click += new System.EventHandler(this.btnUpdateInfo_Click);
             // 
@@ -388,6 +348,62 @@
             this.groupBox2.TabIndex = 36;
             this.groupBox2.TabStop = false;
             // 
+            // btnRefresh
+            // 
+            this.btnRefresh.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnRefresh.Image = global::TVSHomePage.Properties.Resources.arrow_refresh_4_icon;
+            this.btnRefresh.Location = new System.Drawing.Point(690, 42);
+            this.btnRefresh.Name = "btnRefresh";
+            this.btnRefresh.Size = new System.Drawing.Size(188, 47);
+            this.btnRefresh.TabIndex = 3;
+            this.btnRefresh.Text = "Refresh Data";
+            this.btnRefresh.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.btnRefresh.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
+            this.btnRefresh.UseVisualStyleBackColor = true;
+            this.btnRefresh.Click += new System.EventHandler(this.btnRefresh_Click);
+            // 
+            // btnClockOut
+            // 
+            this.btnClockOut.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnClockOut.Image = global::TVSHomePage.Properties.Resources.door_out_icon;
+            this.btnClockOut.Location = new System.Drawing.Point(256, 42);
+            this.btnClockOut.Name = "btnClockOut";
+            this.btnClockOut.Size = new System.Drawing.Size(188, 47);
+            this.btnClockOut.TabIndex = 1;
+            this.btnClockOut.Text = "Clock Out";
+            this.btnClockOut.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.btnClockOut.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
+            this.btnClockOut.UseVisualStyleBackColor = true;
+            this.btnClockOut.Click += new System.EventHandler(this.btnClockOut_Click);
+            // 
+            // btnClockIn
+            // 
+            this.btnClockIn.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnClockIn.Image = global::TVSHomePage.Properties.Resources.door_in_icon;
+            this.btnClockIn.Location = new System.Drawing.Point(39, 42);
+            this.btnClockIn.Name = "btnClockIn";
+            this.btnClockIn.Size = new System.Drawing.Size(188, 47);
+            this.btnClockIn.TabIndex = 0;
+            this.btnClockIn.Text = "Clock In";
+            this.btnClockIn.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.btnClockIn.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
+            this.btnClockIn.UseVisualStyleBackColor = true;
+            this.btnClockIn.Click += new System.EventHandler(this.btnClockIn_Click);
+            // 
+            // btnLogout
+            // 
+            this.btnLogout.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnLogout.Image = global::TVSHomePage.Properties.Resources.Close_2_icon;
+            this.btnLogout.Location = new System.Drawing.Point(473, 42);
+            this.btnLogout.Name = "btnLogout";
+            this.btnLogout.Size = new System.Drawing.Size(188, 47);
+            this.btnLogout.TabIndex = 2;
+            this.btnLogout.Text = "Logout";
+            this.btnLogout.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.btnLogout.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
+            this.btnLogout.UseVisualStyleBackColor = true;
+            this.btnLogout.Click += new System.EventHandler(this.btnLogout_Click);
+            // 
             // frmEmployee
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -406,6 +422,7 @@
             this.Controls.Add(this.dgvUserInfo);
             this.Controls.Add(this.label2);
             this.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "frmEmployee";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "EmployeeForm";

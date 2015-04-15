@@ -28,12 +28,8 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(AdministratorForm));
             this.dgvEmployees = new System.Windows.Forms.DataGridView();
-            this.btnAddEmployee = new System.Windows.Forms.Button();
-            this.btnReload = new System.Windows.Forms.Button();
-            this.btnClose = new System.Windows.Forms.Button();
-            this.btnDelete = new System.Windows.Forms.Button();
-            this.btnEditEmployee = new System.Windows.Forms.Button();
             this.cbEmpID = new System.Windows.Forms.ComboBox();
             this.label1 = new System.Windows.Forms.Label();
             this.lstClockedIn = new System.Windows.Forms.ListBox();
@@ -42,10 +38,15 @@
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.label2 = new System.Windows.Forms.Label();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
-            this.btnPayroll = new System.Windows.Forms.Button();
             this.groupBox4 = new System.Windows.Forms.GroupBox();
             this.dgvPayHistory = new System.Windows.Forms.DataGridView();
             this.label3 = new System.Windows.Forms.Label();
+            this.btnPayroll = new System.Windows.Forms.Button();
+            this.btnDelete = new System.Windows.Forms.Button();
+            this.btnAddEmployee = new System.Windows.Forms.Button();
+            this.btnReload = new System.Windows.Forms.Button();
+            this.btnEditEmployee = new System.Windows.Forms.Button();
+            this.btnClose = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.dgvEmployees)).BeginInit();
             this.groupBox3.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvTimeTable)).BeginInit();
@@ -67,61 +68,6 @@
             this.dgvEmployees.Size = new System.Drawing.Size(1257, 242);
             this.dgvEmployees.TabIndex = 15;
             this.dgvEmployees.TabStop = false;
-            // 
-            // btnAddEmployee
-            // 
-            this.btnAddEmployee.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnAddEmployee.Location = new System.Drawing.Point(845, 11);
-            this.btnAddEmployee.Name = "btnAddEmployee";
-            this.btnAddEmployee.Size = new System.Drawing.Size(188, 47);
-            this.btnAddEmployee.TabIndex = 3;
-            this.btnAddEmployee.Text = "Add New Employee";
-            this.btnAddEmployee.UseVisualStyleBackColor = true;
-            this.btnAddEmployee.Click += new System.EventHandler(this.btnAddEmployee_Click);
-            // 
-            // btnReload
-            // 
-            this.btnReload.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnReload.Location = new System.Drawing.Point(1062, 11);
-            this.btnReload.Name = "btnReload";
-            this.btnReload.Size = new System.Drawing.Size(188, 47);
-            this.btnReload.TabIndex = 4;
-            this.btnReload.Text = "Reload Data";
-            this.btnReload.UseVisualStyleBackColor = true;
-            this.btnReload.Click += new System.EventHandler(this.btnReload_Click);
-            // 
-            // btnClose
-            // 
-            this.btnClose.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnClose.Location = new System.Drawing.Point(548, 569);
-            this.btnClose.Name = "btnClose";
-            this.btnClose.Size = new System.Drawing.Size(188, 47);
-            this.btnClose.TabIndex = 6;
-            this.btnClose.Text = "Logout";
-            this.btnClose.UseVisualStyleBackColor = true;
-            this.btnClose.Click += new System.EventHandler(this.btnClose_Click);
-            // 
-            // btnDelete
-            // 
-            this.btnDelete.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnDelete.Location = new System.Drawing.Point(628, 11);
-            this.btnDelete.Name = "btnDelete";
-            this.btnDelete.Size = new System.Drawing.Size(188, 47);
-            this.btnDelete.TabIndex = 2;
-            this.btnDelete.Text = "Delete Employee";
-            this.btnDelete.UseVisualStyleBackColor = true;
-            this.btnDelete.Click += new System.EventHandler(this.btnDelete_Click);
-            // 
-            // btnEditEmployee
-            // 
-            this.btnEditEmployee.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnEditEmployee.Location = new System.Drawing.Point(411, 11);
-            this.btnEditEmployee.Name = "btnEditEmployee";
-            this.btnEditEmployee.Size = new System.Drawing.Size(188, 47);
-            this.btnEditEmployee.TabIndex = 1;
-            this.btnEditEmployee.Text = "Edit Employee";
-            this.btnEditEmployee.UseVisualStyleBackColor = true;
-            this.btnEditEmployee.Click += new System.EventHandler(this.btnEditEmployee_Click);
             // 
             // cbEmpID
             // 
@@ -212,17 +158,6 @@
             this.groupBox2.TabIndex = 26;
             this.groupBox2.TabStop = false;
             // 
-            // btnPayroll
-            // 
-            this.btnPayroll.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnPayroll.Location = new System.Drawing.Point(1078, 569);
-            this.btnPayroll.Name = "btnPayroll";
-            this.btnPayroll.Size = new System.Drawing.Size(188, 47);
-            this.btnPayroll.TabIndex = 5;
-            this.btnPayroll.Text = "Payroll Payout";
-            this.btnPayroll.UseVisualStyleBackColor = true;
-            this.btnPayroll.Click += new System.EventHandler(this.btnPayroll_Click);
-            // 
             // groupBox4
             // 
             this.groupBox4.Controls.Add(this.dgvPayHistory);
@@ -255,6 +190,90 @@
             this.label3.TabIndex = 21;
             this.label3.Text = "Selected Employee Pay History:";
             // 
+            // btnPayroll
+            // 
+            this.btnPayroll.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnPayroll.Image = global::TVSHomePage.Properties.Resources.database_process_icon;
+            this.btnPayroll.Location = new System.Drawing.Point(1078, 569);
+            this.btnPayroll.Name = "btnPayroll";
+            this.btnPayroll.Size = new System.Drawing.Size(188, 47);
+            this.btnPayroll.TabIndex = 5;
+            this.btnPayroll.Text = "Payroll Payout";
+            this.btnPayroll.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.btnPayroll.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
+            this.btnPayroll.UseVisualStyleBackColor = true;
+            this.btnPayroll.Click += new System.EventHandler(this.btnPayroll_Click);
+            // 
+            // btnDelete
+            // 
+            this.btnDelete.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnDelete.Image = global::TVSHomePage.Properties.Resources.Misc_Delete_Database_icon;
+            this.btnDelete.Location = new System.Drawing.Point(628, 11);
+            this.btnDelete.Name = "btnDelete";
+            this.btnDelete.Size = new System.Drawing.Size(188, 47);
+            this.btnDelete.TabIndex = 2;
+            this.btnDelete.Text = "Delete Employee";
+            this.btnDelete.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.btnDelete.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
+            this.btnDelete.UseVisualStyleBackColor = true;
+            this.btnDelete.Click += new System.EventHandler(this.btnDelete_Click);
+            // 
+            // btnAddEmployee
+            // 
+            this.btnAddEmployee.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnAddEmployee.Image = global::TVSHomePage.Properties.Resources.Document_Write_icon;
+            this.btnAddEmployee.Location = new System.Drawing.Point(845, 11);
+            this.btnAddEmployee.Name = "btnAddEmployee";
+            this.btnAddEmployee.Size = new System.Drawing.Size(188, 47);
+            this.btnAddEmployee.TabIndex = 3;
+            this.btnAddEmployee.Text = "Add Employee";
+            this.btnAddEmployee.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.btnAddEmployee.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
+            this.btnAddEmployee.UseVisualStyleBackColor = true;
+            this.btnAddEmployee.Click += new System.EventHandler(this.btnAddEmployee_Click);
+            // 
+            // btnReload
+            // 
+            this.btnReload.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnReload.Image = global::TVSHomePage.Properties.Resources.arrow_refresh_4_icon;
+            this.btnReload.Location = new System.Drawing.Point(1062, 11);
+            this.btnReload.Name = "btnReload";
+            this.btnReload.Size = new System.Drawing.Size(188, 47);
+            this.btnReload.TabIndex = 4;
+            this.btnReload.Text = "Reload Data";
+            this.btnReload.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.btnReload.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
+            this.btnReload.UseVisualStyleBackColor = true;
+            this.btnReload.Click += new System.EventHandler(this.btnReload_Click);
+            // 
+            // btnEditEmployee
+            // 
+            this.btnEditEmployee.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnEditEmployee.Image = global::TVSHomePage.Properties.Resources.Actions_document_edit_icon;
+            this.btnEditEmployee.Location = new System.Drawing.Point(411, 11);
+            this.btnEditEmployee.Name = "btnEditEmployee";
+            this.btnEditEmployee.Size = new System.Drawing.Size(188, 47);
+            this.btnEditEmployee.TabIndex = 1;
+            this.btnEditEmployee.Text = "Edit Employee";
+            this.btnEditEmployee.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.btnEditEmployee.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
+            this.btnEditEmployee.UseVisualStyleBackColor = true;
+            this.btnEditEmployee.Click += new System.EventHandler(this.btnEditEmployee_Click);
+            // 
+            // btnClose
+            // 
+            this.btnClose.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnClose.Image = global::TVSHomePage.Properties.Resources.Close_2_icon;
+            this.btnClose.Location = new System.Drawing.Point(548, 569);
+            this.btnClose.Name = "btnClose";
+            this.btnClose.Size = new System.Drawing.Size(188, 47);
+            this.btnClose.TabIndex = 6;
+            this.btnClose.Text = "Logout";
+            this.btnClose.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.btnClose.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
+            this.btnClose.UseVisualStyleBackColor = true;
+            this.btnClose.Click += new System.EventHandler(this.btnClose_Click);
+            // 
             // AdministratorForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -268,6 +287,7 @@
             this.Controls.Add(this.groupBox3);
             this.Controls.Add(this.btnClose);
             this.Controls.Add(this.dgvEmployees);
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "AdministratorForm";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Administrator ";
