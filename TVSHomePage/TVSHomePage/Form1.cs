@@ -4,10 +4,7 @@ using System.Windows.Forms;
 namespace TVSHomePage
 {
     public partial class HomePage : Form
-    {
-        
-                
-    
+    {   
         public HomePage()
         {
             InitializeComponent();
@@ -32,12 +29,6 @@ namespace TVSHomePage
             //show login screen to continue
             LogIn login = new LogIn();
             login.Show();
-        }
-
-        private void HomePage_Load(object sender, EventArgs e)
-        {
-
-        }
-        
+        }        
     }
 }

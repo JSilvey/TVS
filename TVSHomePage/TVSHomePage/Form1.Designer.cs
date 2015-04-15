@@ -117,8 +117,7 @@
             this.MaximizeBox = false;
             this.Name = "HomePage";
             this.StartPosition = System.Windows.Forms.FormStartPosition.Manual;
-            this.Text = "Time Verification System";
-            this.Load += new System.EventHandler(this.HomePage_Load);
+            this.Text = "Time Verification System";            
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
