@@ -155,6 +155,7 @@
             this.txtRate.Name = "txtRate";
             this.txtRate.Size = new System.Drawing.Size(212, 31);
             this.txtRate.TabIndex = 13;
+            this.txtRate.Text = "7.25";
             // 
             // btnAddEmployee
             // 

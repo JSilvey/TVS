@@ -22,6 +22,8 @@ namespace TVSHomePage
         public frmEmployee(String userID)
         {
             InitializeComponent();
+            //start timer on form load
+            tmrEmployee.Start();
 
             //Pass userID to global variable
             this.id = userID;
@@ -54,7 +56,7 @@ namespace TVSHomePage
                 string getUserNameQuery = "select FirstName,LastName from EmployeeData where Password='"+id+"' ";
                 string loadEmpInfoTableQuery = "select FirstName,LastName,StreetAddress,City,State,Zip,Phone from EmployeeData where Password='" + id + "'";
                 string loadTimeClockTableQuery = "select ClockedIn,ClockedOut,HoursWorked,TotalHoursWorked,payedOut from TimeClock where UserPassword='"+id+"'";
-                string loadPayHistory = "select Check_ID,GrossPay,PayDate from PayChecks where userPassword='"+id+"'";
+                string loadPayHistory = "select Check_ID,HoursPaid,GrossPay,PayDate from PayChecks where userPassword='"+id+"'";
                 
                 //Get user first and last name and greet in title bar
                 command.CommandText = getUserNameQuery;
@@ -74,6 +76,18 @@ namespace TVSHomePage
                 dgvUserInfo.AutoResizeColumns();
                 dgvUserInfo.ClearSelection();
                 dgvUserInfo.CurrentCell = null;
+
+                //Fill Textboxes
+                command.CommandText = loadEmpInfoTableQuery;
+                OleDbDataReader drEmpInfo = command.ExecuteReader();
+                drEmpInfo.Read();
+                txtStreet.Text=drEmpInfo["StreetAddress"].ToString();;
+                txtCity.Text=drEmpInfo["City"].ToString();;
+                txtState.Text=drEmpInfo["State"].ToString();;
+                txtZipcode.Text = drEmpInfo["Zip"].ToString(); ;
+                txtPhone.Text=drEmpInfo["Phone"].ToString();
+                drEmpInfo.Close();
+
 
                 //Fill TimeCard Table
                 command.CommandText = loadTimeClockTableQuery;
@@ -248,13 +262,6 @@ set StreetAddress='" + txtStreet.Text + "', City='" + txtCity.Text + "', State='
                 }
                 //reload the data in the tables
                 LoadData();
-
-                //Clear text boxes
-                txtStreet.Clear();
-                txtCity.Clear();
-                txtState.Clear();
-                txtZipcode.Clear();
-                txtPhone.Clear();
             }
         }
 
@@ -359,6 +366,25 @@ set StreetAddress='" + txtStreet.Text + "', City='" + txtCity.Text + "', State='
                 }
 
             
+        }
+
+        private void btnRefresh_Click(object sender, EventArgs e)
+        {
+            LoadData();
+        }
+
+        private void tmrEmployee_Tick(object sender, EventArgs e)
+        {
+            //Get current Time
+            DateTime dateTime = DateTime.Now;
+            //Set Time Label To Show Current Time
+
+            this.lblDay.Text = dateTime.ToString("dddd");
+            this.lblDate.Text = dateTime.ToString("MMM dd, yyyy");
+            this.lblTime.Text = dateTime.ToString("hh:mm:ss tt");
+            lblDay.Visible = true;
+            lblDate.Visible = true;
+            lblTime.Visible = true;
         }
         
     }

@@ -101,6 +101,8 @@ namespace TVSHomePage
                 cbEmpID.Text = "";
                 dgvTimeTable.DataSource = null;
                 dgvTimeTable.Rows.Clear();
+                dgvPayHistory.DataSource = null;
+                dgvPayHistory.Rows.Clear();
 
                 
                 connection.Close();
@@ -179,19 +181,55 @@ namespace TVSHomePage
                 char delimiter = ' ';
                 string text = cbEmpID.Text;
                 string[] words = text.Split(delimiter);
-                string emp_ID = words[0];  
+                string emp_ID = words[0];
+                string empName= (words[1]+" "+words[2]);
+                string userPassword="";
                                
                 
                 //valid ID was selected
                 try
                 {
+                    //get user password from emp_ID number
                     connection.Open();
+                    string getPassword = "select [Password] from EmployeeData where EMP_ID="+emp_ID+"";
                     OleDbCommand command = new OleDbCommand();
+                    command.Connection = connection;
+                    command.CommandText = getPassword;
+                    OleDbDataReader drGetPassword = command.ExecuteReader();
+                    drGetPassword.Read();
+                    userPassword = drGetPassword["Password"].ToString();
+                    connection.Close();
+                    
+                    //delete from TimeClock table
+                    connection.Open();                    
+                    string deleteTimeClockEntry= "delete from TimeClock where [UserPassword]='" + userPassword + "'";
+                    command.CommandText = deleteTimeClockEntry;
+                    command.ExecuteNonQuery();                    
+                    connection.Close();
+                   
+                    //delete from PayPeriod Table                    
+                    connection.Open();                    
+                    command.Connection = connection;
+                    string deletePayPeriodEntry = "delete from PayPeriod where [UserPassword]='" + userPassword + "'";
+                    command.CommandText = deletePayPeriodEntry;
+                    command.ExecuteNonQuery();                    
+                    connection.Close();
+
+                    //delete from PayChecks Table                    
+                    connection.Open();
+                    command.Connection = connection;
+                    string deletePayChecksEntry = "delete from PayChecks where [userPassword]='" + userPassword + "'";
+                    command.CommandText = deletePayChecksEntry;
+                    command.ExecuteNonQuery();
+                    connection.Close();
+                    
+                    //delete from EmployeeData Table
+                    connection.Open();                    
                     command.Connection = connection;
                     string deleteEmployeeQuery = "delete from EmployeeData where [EMP_ID]=" + emp_ID + "";
                     command.CommandText = deleteEmployeeQuery;
                     command.ExecuteNonQuery();
-                    MessageBox.Show("Employee Record Deleted! ", "Success!", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    MessageBox.Show(empName+"'s Record Deleted! ", "Success!", MessageBoxButtons.OK, MessageBoxIcon.Information);
                     connection.Close();
 
                     //clear Combo box entry
@@ -252,6 +290,17 @@ namespace TVSHomePage
                 dgvTimeTable.ClearSelection();
                 dgvTimeTable.CurrentCell = null;
 
+                //user the user password to load paycheck history data into the timecard table
+                string loadPayHistory = "select Check_ID,HoursPaid,GrossPay,PayDate from PayChecks where userPassword='"+userPassword+"'";
+                command.CommandText = loadPayHistory;
+                OleDbDataAdapter daPayHistory = new OleDbDataAdapter(command);
+                DataTable dtPayHistory = new DataTable();
+                daPayHistory.Fill(dtPayHistory);
+                dgvPayHistory.DataSource = dtPayHistory;
+                dgvPayHistory.AutoResizeColumns();
+                dgvPayHistory.ClearSelection();
+                dgvPayHistory.CurrentCell = null;
+
                 connection.Close();
 
             }
@@ -271,7 +320,7 @@ namespace TVSHomePage
             DateTime dt = DateTime.Now;
             string payedOut = "no";
             string userPassword;
-            string totalPay;
+            string totalPay="";            
 
             //create a dictionary to store userPassword and totalpay as strings from database
             Dictionary<string, string> dictionaryPayStrings = new Dictionary<string, string>();
@@ -304,6 +353,7 @@ namespace TVSHomePage
                 //convert dictionary time from string to double and populate dictionaryPayInSeconds 
                 foreach(KeyValuePair<string,string> userPw in dictionaryPayStrings)
                 {
+                    //convert time to seconds and add to a separate dictionary
                     TimeSpan time = TimeSpan.Parse(userPw.Value);                    
                     double sec = time.TotalSeconds;
                     dictionaryPayInSeconds.Add(userPw.Key, sec);                    
@@ -326,7 +376,7 @@ namespace TVSHomePage
 
                     //show paid out date on timeclock and reset totalhours in paycheck table
                     connection.Open();
-                    string editPayedOut = "update TimeClock set PayedOut='" + "Yes, on " + dt + "' where UserPassword='" + userIDNum.Key + "' and PayedOut='"+payedOut+"'";
+                    string editPayedOut = "update TimeClock set PayedOut='" +  dt + "' where UserPassword='" + userIDNum.Key + "' and PayedOut='"+payedOut+"'";
                     command.CommandText = editPayedOut;
                     command.ExecuteNonQuery();
                     string resetTotalHours = "update PayPeriod set TotalHours='"+"0:0:0"+"'where UserPassword='"+userIDNum.Key+"'";
@@ -340,21 +390,49 @@ namespace TVSHomePage
                     command.CommandText = recordPaycheck;
                     command.ExecuteNonQuery();
                     connection.Close();
+
+                    //read paycheck number from PayChecks table
+                    connection.Open();
+                    string readCheckNumber = "select Check_ID from PayChecks where userPassword='"+userIDNum.Key+"'";
+                    command.CommandText = readCheckNumber;
+                    OleDbDataReader drCheckNum = command.ExecuteReader();
+                    drCheckNum.Read();
+                    string tempCheckNum = drCheckNum["Check_ID"].ToString();
+                    drCheckNum.Close();
+                    
+                    //recheck check number to make sure it is the latest(largest) number
+                    string checkNum = "";
+                    OleDbDataReader drCheckNumFinalCheck = command.ExecuteReader();
+                    while (drCheckNumFinalCheck.Read())
+                    {
+                        if (Convert.ToInt32(drCheckNumFinalCheck["Check_ID"].ToString())>=Convert.ToInt32(tempCheckNum))
+                        {
+                            //If the reader finds a larger check number than tempCheckNum store the larger number in checkNum
+                            checkNum = drCheckNumFinalCheck["Check_ID"].ToString();
+
+                        }
+                    }
+                    drCheckNumFinalCheck.Close();
+                    connection.Close();
+
+                    //get user hours from paystrings dictionary
+                    string userhours = dictionaryPayStrings[userIDNum.Key];
+                    //write hoursPaid to paychecks table
+                    connection.Open();
+                    string writeHoursPaid = "update PayChecks set HoursPaid='"+userhours+"' where Check_ID="+checkNum+"";
+                    command.CommandText = writeHoursPaid;
+                    command.ExecuteNonQuery();                    
+                    connection.Close();
+                    
                 }
-                
-
-                
-                
-
-               
-
                 connection.Close();
+                MessageBox.Show("Payroll Payout Complete!","Success",MessageBoxButtons.OK,MessageBoxIcon.Information);
 
             }
             catch (Exception ex)
             {
                 connection.Close();
-                MessageBox.Show("There was an error!\n" + ex.Message, "OOPS!", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show("There was an error!\n" + ex, "OOPS!", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
             finally
             {

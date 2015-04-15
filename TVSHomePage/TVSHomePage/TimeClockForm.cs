@@ -65,13 +65,13 @@ namespace TVSHomePage
             
             
             
-            if (mtbEmployeeID.Text.Equals(""))
+            if (txtEmployeeID.Text.Equals(""))
             {
                 MessageBox.Show("Employee ID field can not be left blank!", "ERROR!");
             }
             else
             {
-                string userPassword = mtbEmployeeID.Text;
+                string userPassword = txtEmployeeID.Text;
                 
                 
                 try
@@ -163,12 +163,13 @@ namespace TVSHomePage
                         MessageBox.Show(userName + " clocked in at:\n" + dt, "Clock In Confirmation");
 
                         //Clear masked text box for next employee
-                        mtbEmployeeID.Clear();
+                        txtEmployeeID.Clear();
                     }                   
                     connection.Close();
                 }
                 catch (Exception ex)
                 {
+                    txtEmployeeID.Clear();
                     connection.Close();
                     MessageBox.Show("There was an error connecting to the database.\n" + ex.Message, "ERROR", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 }
@@ -179,7 +180,7 @@ namespace TVSHomePage
 
             }
             //set focus back to text box
-            mtbEmployeeID.Focus();
+            txtEmployeeID.Focus();
         }
 
         private void btnClockOut_Click(object sender, EventArgs e)
@@ -191,15 +192,13 @@ namespace TVSHomePage
             String nullClockID = "";
             String payedOut = "no";
 
-            if (mtbEmployeeID.Text.Equals(""))
+            if (txtEmployeeID.Text.Equals(""))
             {
                 MessageBox.Show("Employee ID field can not be left blank!", "ERROR!");
             }
             else
             {
-                string userPassword = mtbEmployeeID.Text;
-
-
+                string userPassword = txtEmployeeID.Text;
                 try
                 {
                     //open database connection
@@ -271,12 +270,12 @@ namespace TVSHomePage
                         MessageBox.Show(userName + " clocked out at:\n" + dt, "Clock In Confirmation");
 
                         //Clear masked text box for next employee
-                        mtbEmployeeID.Clear();
-                    }
-                    
+                        txtEmployeeID.Clear();
+                    }                    
                 }
                 catch (Exception ex)
                 {
+                    txtEmployeeID.Clear();
                     connection.Close();
                     MessageBox.Show("There was an error connecting to the database.\n" + ex.Message, "ERROR", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 }
@@ -284,10 +283,9 @@ namespace TVSHomePage
                 {
                     connection.Close();
                 }
-
             }
             //set focus back to text box
-            mtbEmployeeID.Focus();
+            txtEmployeeID.Focus();
          }
 
         public void CalcHoursWorked(string userId, long clockID )
@@ -350,9 +348,8 @@ namespace TVSHomePage
                 //write totalhours to TimeClock table in database
                 string writeTotalHours = "update TimeClock set TotalHoursWorked='"+totalHours+"' where Clock_ID="+clockID+"";
                 command.CommandText = writeTotalHours;
-                command.ExecuteNonQuery();
+                command.ExecuteNonQuery();                             
                 
-
                 //write totalhours to PayPeriod table in database
                 string readPayPeriodTable = "select UserPassword from PayPeriod";
                 string writePayPeriodTable = null;

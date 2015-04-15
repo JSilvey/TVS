@@ -37,21 +37,21 @@
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Font = new System.Drawing.Font("Consolas", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label1.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
             this.label1.Location = new System.Drawing.Point(22, 19);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(240, 44);
+            this.label1.Size = new System.Drawing.Size(234, 48);
             this.label1.TabIndex = 2;
             this.label1.Text = "Welcome!\r\nPlease Select an Option";
             this.label1.TextAlign = System.Drawing.ContentAlignment.TopCenter;
             // 
             // btnTimeClock
             // 
-            this.btnTimeClock.Font = new System.Drawing.Font("Rockwell", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnTimeClock.Location = new System.Drawing.Point(36, 103);
+            this.btnTimeClock.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnTimeClock.Location = new System.Drawing.Point(52, 78);
             this.btnTimeClock.Name = "btnTimeClock";
-            this.btnTimeClock.Size = new System.Drawing.Size(213, 29);
+            this.btnTimeClock.Size = new System.Drawing.Size(181, 47);
             this.btnTimeClock.TabIndex = 0;
             this.btnTimeClock.Text = "Time Clock";
             this.btnTimeClock.UseVisualStyleBackColor = true;
@@ -59,10 +59,10 @@
             // 
             // btnExit
             // 
-            this.btnExit.Font = new System.Drawing.Font("Rockwell", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnExit.Location = new System.Drawing.Point(36, 197);
+            this.btnExit.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnExit.Location = new System.Drawing.Point(52, 196);
             this.btnExit.Name = "btnExit";
-            this.btnExit.Size = new System.Drawing.Size(213, 32);
+            this.btnExit.Size = new System.Drawing.Size(181, 47);
             this.btnExit.TabIndex = 2;
             this.btnExit.Text = "Exit";
             this.btnExit.UseVisualStyleBackColor = true;
@@ -70,10 +70,10 @@
             // 
             // btnAdvanced
             // 
-            this.btnAdvanced.Font = new System.Drawing.Font("Rockwell", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnAdvanced.Location = new System.Drawing.Point(36, 150);
+            this.btnAdvanced.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnAdvanced.Location = new System.Drawing.Point(52, 137);
             this.btnAdvanced.Name = "btnAdvanced";
-            this.btnAdvanced.Size = new System.Drawing.Size(213, 29);
+            this.btnAdvanced.Size = new System.Drawing.Size(181, 47);
             this.btnAdvanced.TabIndex = 1;
             this.btnAdvanced.Text = "Advanced Options";
             this.btnAdvanced.UseVisualStyleBackColor = true;

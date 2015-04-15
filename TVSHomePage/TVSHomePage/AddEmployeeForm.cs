@@ -52,6 +52,13 @@ namespace TVSHomePage
                 MessageBox.Show(txtFirstName.Text + " " + txtLastName.Text + " was added to the employee database.","Success!", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 connection.Close();
 
+                //add employee to PayPeriod Table
+                connection.Open();
+                string addEmp = "insert into PayPeriod (UserPassword,TotalHours) values('" + txtPassword.Text + "','" + "0:0:0" + "')";
+                command.CommandText = addEmp;
+                command.ExecuteNonQuery();
+                connection.Close();
+
                 ClearTextBoxes();
 
 
